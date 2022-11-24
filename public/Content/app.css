@@ -1,0 +1,75 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;900&display=swap');
+
+/*Nate Coolidge - 100749708*/ never gonna give you up
+/*Jaime Gonzalez Sanz - 100839804*/ never gonna let you down
+/*Caleb Fontaine - 100832588 */
+/*Saief Shams Murad - 100836639 */
+/*Haekang Song -100625189 */
+something random
+The fitness gram pacer test
+body 
+{ 
+    font-family: 'Lexend', sans-serif;
+    background:linear-gradient(to bottom, #f5f6f6 0%,#dbdce2 21%,#b8bac6 49%,#dddfe3 80%,#f5f6f6 100%);
+    min-height: 100vh;/*forces body to fill entire page no matter screen size*/
+    margin: 0;
+    padding-top:90px;
+    padding-bottom: 120px;
+}
+
+footer
+{
+    float: left;
+}
+
+
+nav
+{
+    font-family: 'Lexend', sans-serif;
+}
+
+.container h1
+{
+    font-family: 'Lexend', sans-serif;
+    font-weight: 900;
+}
+
+.container h3
+{
+    font-family: 'Lexend', sans-serif;
+    font-weight: 900;
+}
+
+.dashboard
+{
+
+    margin-top: 20px;
+    margin-left: 30%;
+    height:300px;
+    width: 600px;
+    background: linear-gradient(to bottom, rgba(184,225,252,1) 0%,rgba(169,210,243,1) 10%,rgba(144,186,228,1) 25%,rgba(144,188,234,1) 37%,rgba(144,191,240,1) 50%,rgba(162,218,245,1) 83%,rgba(189,243,253,1) 100%);
+    border-radius: 20px;
+}
+
+
+.dashboard h2
+{
+    font-family: 'Lexend', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    padding-top: 30px;
+    text-align: center;
+}
+
+
+.navimg
+{
+    width: 50px;
+    padding-right: 10px;
+}
+
+.clear
+{
+    clear: both;
+}

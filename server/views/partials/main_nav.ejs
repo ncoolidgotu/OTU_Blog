@@ -1,0 +1,53 @@
+<%- include header.ejs %>
+<nav class="navbar bg-primary bg-gradient navbar-dark navbar-expand-lg fixed-top" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+    <img class="navimg" src="/Assets/images/assets.png" alt="An icon with a calculator and balance sheet">
+    <a class="navbar-brand" style="margin-right: 0px;">Fixed Asset Management | <%= title %></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNav"> <!--For responsive design-->
+        <ul class="navbar-nav ms-auto">
+        <li class="nav-item"> <!--Navigation items-->
+        <% if (title=="Dashboard") { %>
+            <a class="nav-link active" aria-current="page" href="/dashboard">
+            <i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <% } else {%> 
+            <a class="nav-link" aria-current="page" href="/dashboard">
+            <i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <%} %>
+        </li>
+        <li class="nav-item">
+        <% if (title=="Asset List") { %>
+            <a class="nav-link active" href="/asset-list">
+            <i class="fa-regular fa-list"></i> List Assets</a>
+        <% } else {%> 
+        <a class="nav-link" href="/asset-list">
+        <i class="fa-regular fa-list"></i> List Assets</a>
+        <%} %>
+        </li>
+        <li class="nav-item">
+        <% if (title=="Asset Addition") { %>
+            <a class="nav-link active" href="/asset-list/add">
+            <i class="fa-regular fa-plus"></i> Asset Addition</a>
+            <%} else {%> 
+            <a class="nav-link" href="/asset-list/add">
+            <i class="fa-regular fa-plus"></i> Asset Addition</a>
+            <%} %>
+        </li>
+        <li class="nav-item">
+        <% if (title=="Asset Net Book Value") { %>
+            <a class="nav-link active" href="/asset-list/nbv">
+            <i class="fa-regular fa-file-pen"></i> NBV Report</a>
+        <%} else {%> 
+            <a class="nav-link" href="/asset-list/nbv">
+            <i class="fa-regular fa-file-pen"></i> NBV Report</a>
+        <%} %>
+            
+        </li>
+        </ul>
+    </div>
+    </div>
+    </div>
+</nav>
