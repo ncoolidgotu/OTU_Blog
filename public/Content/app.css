@@ -1,13 +1,11 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;900&display=swap');
 
-/*Nate Coolidge - 100749708*/ never gonna give you up
-/*Jaime Gonzalez Sanz - 100839804*/ never gonna let you down
+/*Nate Coolidge - 100749708*/ 
+/*Jaime Gonzalez Sanz - 100839804*/ 
 /*Caleb Fontaine - 100832588 */
 /*Saief Shams Murad - 100836639 */
 /*Haekang Song -100625189 */
-something random
-The fitness gram pacer test
 body 
 { 
     font-family: 'Lexend', sans-serif;
@@ -27,7 +25,9 @@ footer
 nav
 {
     font-family: 'Lexend', sans-serif;
+    font-size: 20px;
 }
+
 
 .container h1
 {
@@ -68,6 +68,8 @@ nav
     width: 50px;
     padding-right: 10px;
 }
+
+
 
 .clear
 {

@@ -1,14 +1,20 @@
 <%- include header.ejs %>
-<nav class="navbar bg-primary bg-gradient navbar-dark navbar-expand-lg fixed-top" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-custom ">
+        <style>
+            .bg-custom
+                {
+                    background-image: linear-gradient(90deg, rgba(6,83,176,1) 55%, rgba(255,76,0,1) 100%);
+                }
+        </style>
     <div class="container-fluid">
-    <img class="navimg" src="/Assets/images/assets.png" alt="An icon with a calculator and balance sheet">
-    <a class="navbar-brand" style="margin-right: 0px;">Fixed Asset Management | <%= title %></a>
+    <img class="navimg" src="/Assets/images/assets.png">
+    <a class="navbar-brand" style="margin-right: 0px;">OTUBlog</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarNav"> <!--For responsive design-->
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto justify-content-center">
         <li class="nav-item"> <!--Navigation items-->
         <% if (title=="Dashboard") { %>
             <a class="nav-link active" aria-current="page" href="/dashboard">
