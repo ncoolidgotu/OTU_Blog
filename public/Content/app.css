@@ -70,6 +70,67 @@ nav
 }
 
 
+/*this is for home page*/
+.wrapper {
+    display: flex;
+    align-items: center;
+    height: calc(100vh - 100px);
+  }
+
+  .container {
+    width: 100%;
+    text-align: center;
+    font-size: 200%;
+  }
+
+  .container iframe {
+    margin-top: 40px;
+  }
+
+/*set the button color and size*/
+.btn {
+    font-size: 25px;
+    padding: 15px 30px;
+    border: 3px solid darkcyan;
+    background-color: transparent;
+    color: orange;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: bold;
+    position: relative; /*put fake btn*/
+    transition: all 0.3s;
+    overflow: hidden
+    
+}
+
+/*does not show outline when mouse click*/
+.btn:focus {
+    outline: none;
+}
+
+/*make fake button to make it more cool*/
+.btn::before {
+    content: "";
+    position: absolute; /*can change the size*/
+    height: 100%;
+    width: 100%;
+    background-color: darkcyan;
+    top: 0;
+    left: -100%;
+    transition: all 0.5s;
+    z-index: -1; /*To show the text*/
+}
+
+.btn:hover::before {
+    transform: translateX(100%);
+}
+
+.btn:hover {
+    color: whitesmoke;
+}
+/*this is for home page*/
+
+
 
 .clear
 {

@@ -1,3 +1,70 @@
 <%- include ./partials/main_nav.ejs %>
 
-<%- include ./partials/footer.ejs %>
+<!--This is for home css-->
+<!--<link rel="stylesheet" href="/Content/app.css" />-->
+
+<div class="container text-center" id="about">
+  <div class="row justify-content-start">
+    <div class="col-6">
+      <br>
+      <br>
+      <h3>Introduction</h3>
+      <h4>Welcome to OTU blog</h4>
+      <h4>We are here to support you. If you reach any difficulty during semester ....</h4>
+    </div>
+    <div class="col-6">
+
+      <body>
+        <br>
+        <br>
+        <a href="/course-list/add" button type="button" class="btn btn-primary btn-lg">Let's go to Post</button>
+        </a>
+      </body>
+    </div>
+  </div>
+
+  <div class="row justify-content-start">
+    <div class="col-12">
+
+      <body>
+        <div class="wrapper">
+          <div class="container">
+            <h1>D-day for Fall Semester</h1>
+            <div id="count_time">00Day 00hour 00minute 00second </div>
+            <!--set id as count to count the time-->
+          </div>
+        </div>
+      </body>
+
+      <script>
+        //set the goal date
+        const goalDate = new Date("2022-12-16 23:59:59").getTime();
+
+        //calculate the date in day, hr, min, sec 
+        function calcDate() {
+          const now = new Date().getTime();
+          const distance = goalDate - now;
+
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          //show the results of the calculation
+          if (distance < 0) {
+            return '(Semester ends!)';
+          } else {
+            return `${days}Days ${hours}hours ${minutes}minutes ${seconds}seconds`;
+          }
+        }
+
+        //let the function runs every sec. I set 1000 because 1000ms = 1 second
+        setInterval(() => {
+          document.getElementById('count_time').innerText = calcDate();
+        }, 1000);
+      </script>
+    </div>
+  </div>
+
+
+  <%- include ./partials/footer.ejs %>
