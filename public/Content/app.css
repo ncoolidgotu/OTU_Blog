@@ -103,7 +103,7 @@ nav
     
 }
 
-/*does not show outline when mouse click*/
+/*does not show outline when mouse click  */
 .btn:focus {
     outline: none;
 }
