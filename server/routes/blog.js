@@ -3,7 +3,7 @@ let router = express.Router(); //create router
 let mongoose = require('mongoose'); //use mongoose library
 //Nate Coolidge - 100749708
 
-// connect with asset model
+// connect with blog model
 
 let Post = require('../models/blog');
 
@@ -12,9 +12,9 @@ let blogController = require('../controller/blog');
 
 // Read Operation
 
-// Get route for the asset list
+// Get route for the blog posts feed
 
-router.get('/', blogController.viewPost);
+router.get('/', blogController.viewFeed);
 
 
 // Create operation
@@ -37,8 +37,6 @@ router.get('/update/:id', blogController.displayUpdatePage);
 router.post('/update/:id', blogController.processPostUpdates);
 
 
-
-// Read Operation (Different read view for asset value calculations)
 
 // Get to perform read operations
 

@@ -21,7 +21,7 @@ mongoDB.once('open', ()=> {
 
 let indexRouter = require('../routes/index'); //router for index page
 let usersRouter = require('../routes/users'); //route for users, not in use right now
-let blogRouter = require('../routes/blog'); //router for asset pages and actions
+let blogRouter = require('../routes/blog'); //router for blog pages and actions
 
 let app = express();
 
@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, '../../node_modules'))); //make this
 
 app.use('/', indexRouter); // attach main page to index view
 app.use('/users', usersRouter);
-app.use('/blog-posts', blogRouter); //attach blogRouter to /blog-posts page
+app.use('/blog-feed', blogRouter); //attach blogRouter to /blog-posts page
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
