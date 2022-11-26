@@ -12,4 +12,4 @@ let postsModel = mongoose.Schema({
 {
     collection: 'posts' //access the blog posts collection
 });
-module.exports = mongoose.model('Post', postsModel) //export the model so it can be used
+module.exports = mongoose.model('Post', postsModel) //export the model so it can be used bla
