@@ -26,6 +26,7 @@ nav
 {
     font-family: 'Lexend', sans-serif;
     font-size: 20px;
+    color: azure;
 }
 
 
@@ -139,5 +140,5 @@ nav
 
 .bg-custom
                 {
-                    background-image: linear-gradient(90deg, rgba(6,83,176,1) 55%, rgba(255,76,0,1) 100%);
+                    background-image: linear-gradient(90deg, rgb(5, 40, 84) 55%, rgb(209, 66, 5) 100%);
                 }
