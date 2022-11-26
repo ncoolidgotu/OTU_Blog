@@ -2,5 +2,5 @@
 
 module.exports = 
 {
-    "URI":"mongodb://192.168.2.2:27017/blog"
+    "URI":"mongodb+srv://ncool:dTipHt2vUys9c6h6@mongodbserver.f3hhs7v.mongodb.net/OTUBlog"
 } //export URI for db
