@@ -7,7 +7,7 @@
                 }
         </style>
     <div class="container-fluid">
-    <img class="navimg" src="/Assets/images/assets.png">
+    <img class="navimg" src="/Assets/images/logo.png">
     <a class="navbar-brand" style="margin-right: 0px;">OTUBlog</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,37 +17,37 @@
         <ul class="navbar-nav ms-auto justify-content-center">
         <li class="nav-item"> <!--Navigation items-->
         <% if (title=="Dashboard") { %>
-            <a class="nav-link active" aria-current="page" href="/dashboard">
+            <a class="nav-link active" aria-current="page" href="/home">
             <i class="fa-solid fa-gauge"></i> Dashboard</a>
         <% } else {%> 
-            <a class="nav-link" aria-current="page" href="/dashboard">
+            <a class="nav-link" aria-current="page" href="/home">
             <i class="fa-solid fa-gauge"></i> Dashboard</a>
         <%} %>
         </li>
         <li class="nav-item">
         <% if (title=="Asset List") { %>
-            <a class="nav-link active" href="/asset-list">
+            <a class="nav-link active" href="/blog-feed">
             <i class="fa-regular fa-list"></i> List Assets</a>
         <% } else {%> 
-        <a class="nav-link" href="/asset-list">
+        <a class="nav-link" href="/blog-feed">
         <i class="fa-regular fa-list"></i> List Assets</a>
         <%} %>
         </li>
         <li class="nav-item">
         <% if (title=="Asset Addition") { %>
-            <a class="nav-link active" href="/asset-list/add">
+            <a class="nav-link active" href="/blog-feed/add">
             <i class="fa-regular fa-plus"></i> Asset Addition</a>
             <%} else {%> 
-            <a class="nav-link" href="/asset-list/add">
+            <a class="nav-link" href="/blog-feed/add">
             <i class="fa-regular fa-plus"></i> Asset Addition</a>
             <%} %>
         </li>
         <li class="nav-item">
         <% if (title=="Asset Net Book Value") { %>
-            <a class="nav-link active" href="/asset-list/nbv">
+            <a class="nav-link active" href="/blog-feed/nbv">
             <i class="fa-regular fa-file-pen"></i> NBV Report</a>
         <%} else {%> 
-            <a class="nav-link" href="/asset-list/nbv">
+            <a class="nav-link" href="/blog-feed/nbv">
             <i class="fa-regular fa-file-pen"></i> NBV Report</a>
         <%} %>
             

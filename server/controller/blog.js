@@ -1,11 +1,11 @@
 let express = require('express'); //use express library
 let router = express.Router(); //create router
 let mongoose = require('mongoose'); //use mongoose library
-let Asset = require('../models/blog') // connect with blog model
+let Post = require('../models/blog') // connect with blog model
 
 //Nate Coolidge - 100749708
 
-module.exports.viewPost = (req, res, next)=>{ //make the function public within a module
+module.exports.viewFeed = (req, res, next)=>{ //make the function public within a module
     Post.find((err, postlist)=>{
         if(err)
         {
@@ -13,8 +13,8 @@ module.exports.viewPost = (req, res, next)=>{ //make the function public within 
         }
         else
         {
-            res.render('blog/list',{
-                title: 'View Post', 
+            res.render('blog/feed',{
+                title: 'My Feed', 
                 Postlist: postlist, //forward the blog database as an array
             })
             console.log(postlist);
@@ -44,7 +44,7 @@ module.exports.processNewPost = (req, res, next)=>{ //make the function public w
         }
         else //redirect to the list page now that we have added the blog into the database
         {
-            res.redirect('/blog-posts') //go back to blog list view
+            res.redirect('/blog-feed') //go back to blog list view
         }
     })
 }
@@ -83,7 +83,7 @@ module.exports.processPostUpdates = (req, res, next)=>{ //make the function publ
         }
         else //redirect to the list page now that we have updated the blog the database
         {
-            res.redirect('/blog-list') //go back to blog list view
+            res.redirect('/blog-feed') //go back to blog list view
         }
     })
 }
@@ -98,7 +98,7 @@ module.exports.deletePost = (req, res, next)=> { //make the function public with
         }
         else //redirect to the list page now that we have deleted the blog from the database
         {
-            res.redirect('/blog-list'); //go back to blog list view
+            res.redirect('/blog-feed'); //go back to blog list view
         }
     })
 }

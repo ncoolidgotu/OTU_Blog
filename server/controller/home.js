@@ -4,7 +4,7 @@ let mongoose = require('mongoose'); //use mongoose library
 
 //Nate Coolidge - 100749708
 
-module.exports.displayDashboard = (req, res, next)=>{ //make the function public within a module
-    res.render('index',{title: 'Dashboard'})
+module.exports.displayHomepage = (req, res, next)=>{ //make the function public within a module
+    res.render('home',{title: 'Homepage'})
 }
 
