@@ -70,7 +70,7 @@ module.exports.processPostUpdates = (req, res, next)=>{ //make the function publ
         "username":req.body.username,
         "title":req.body.title,
         "category":req.body.category,
-        "description":req.body.description,
+        "text_content":req.body.description,
         "postDate":req.body.aquisitionDate,
         "likes":req.body.likes,
         "comments":req.body.comments,
