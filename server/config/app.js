@@ -3,6 +3,9 @@ let express = require('express'); //import express module
 let path = require('path'); //import paths
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let bodyParser = require('body-parser');
+let fs = require('fs');
+let multer = require('multer');
 
 //Nate Coolidge - 100749708
 
@@ -56,5 +59,22 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {title: "Error 404"});
 });
+
+
+
+// StackOverflow - set up multer for storing uploaded files
+
+let storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, 'uploads')
+	},
+	filename: (req, file, cb) => {
+		cb(null, file.fieldname + '-' + Date.now())
+	}
+});
+
+let upload = multer({ storage: storage });
+
+
 
 module.exports = app; //export the configuration for public use
