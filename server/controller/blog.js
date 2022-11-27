@@ -2,6 +2,10 @@ let express = require('express'); //use express library
 let router = express.Router(); //create router
 let mongoose = require('mongoose'); //use mongoose library
 let Post = require('../models/blog') // connect with blog model
+let bodyParser = require('body-parser');
+let fs = require('fs');
+let multer = require('multer');
+let path = require('path');
 
 //Nate Coolidge - 100749708
 
@@ -28,13 +32,16 @@ module.exports.displayNewPost = (req, res, next)=>{ //make the function public w
 
 module.exports.processNewPost = (req, res, next)=>{ //make the function public within a module
     let newPost = Post ({
-        "username":req.body.username,
+        "username":"Richard Astley",
         "title":req.body.title,
         "category":req.body.category,
-        "description":req.body.description,
-        "postDate":req.body.aquisitionDate,
-        "likes":req.body.likes,
-        "comments":req.body.comments,
+        "post_content":req.body.post_content,
+        "photo_content": { //Learned from geeksforgeeks.org
+            data: fs.readFileSync(path.join(__dirname + '../uploads/' + req.file.filename)), //upload image to "uploads" directory. Reference file from form input.
+            contentType: 'image/png'
+        },
+        "postDate":"1/1/2022",
+        "likes":0,
     });
     Post.create(newPost,(err, Post) => { //add the blog to the database based on above information specified
         if(err)
