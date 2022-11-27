@@ -10,18 +10,14 @@ let multer = require('multer');
 
 var storage = multer.diskStorage({
 	destination: (req, file, cb) => {
-		cb(null, __dirname+'/uploads');
+		cb(null, '/'); //can't figure out file path -> should be assets/images/userUploads
 	},
 	filename: (req, file, cb) => {
 		cb(null, file.fieldname + '-' + Date.now() + '.png');
 	}
 });
 
-var upload = multer({storage: storage,
-    onFileUploadStart: function (file) {
-    console.log(file.originalname + ' is starting ...')
-    },
-});
+var upload = multer({dest: '/'}); //can't figure out file path
 
 
 // connect with blog model
