@@ -137,3 +137,17 @@ nav
     font-size: 18px;
     font-weight: 100;
 }
+form
+{
+    position: relative;
+}
+.btn:hover
+{
+    transform: scale(1.1);
+}
+form label
+{
+    font-size: 24px;
+    color: rgb(231, 77, 0);
+    text-align: left;
+}
