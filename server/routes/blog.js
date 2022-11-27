@@ -1,49 +1,29 @@
 let express = require('express'); //use express library
 let router = express.Router(); //create router
 let mongoose = require('mongoose'); //use mongoose library
+let multer = require('multer');
+
 //Nate Coolidge - 100749708
 
-//copying the vid guy:
-//let multer = require('multer');
-//image upload
-/*
-let storage = multer.diskStorage({
-    destination: function(req,file,cb){
-        cb(null,'./pathforimage/'); //upload image to this file
-    },
-    filename: function(req,file,cb){
-        cb(null, file.fieldname#+"_"+Date.now()+"_"+file.originalname); //cute way of naming the file
+
+// StackOverflow - set up multer for storing uploaded files
+
+var storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, __dirname+'/uploads');
+	},
+	filename: (req, file, cb) => {
+		cb(null, file.fieldname + '-' + Date.now() + '.png');
+	}
+});
+
+var upload = multer({storage: storage,
+    onFileUploadStart: function (file) {
+    console.log(file.originalname + ' is starting ...')
     },
 });
 
-let upload = multer({
-    storage: storage;
-}).single('photo_content'); //inside the brackets should be the id / name in .ejs
-//single cause only uploading 1 img at a time
-*/
-//inster user into database
 
-/*
-router.post('/add', upload,(req,res)=>{
-    const post = new Post({     //using the model
-        title: req.body.title,
-        category: req.body.category
-        image: req.file.filename,
-    });
-    post.save((err)=>{
-        if(err){
-        }
-        else{
-            req.session.message
-        }
-    })
-    //.save is mongoose             
-})
-
-*/
-
-//
-//
 // connect with blog model
 
 let Post = require('../models/blog');
@@ -65,7 +45,7 @@ router.get('/add', blogController.displayNewPost);
 
 // Post route for processing the Add page
 
-router.post('/add', blogController.processNewPost);
+router.post('/add', upload.single('photo_content'), blogController.processNewPost);
 
 
 // Update operation
@@ -82,8 +62,6 @@ router.post('/update/:id', blogController.processPostUpdates);
 // Get to perform read operations
 
 router.get('/delete/:id', blogController.deletePost);
-
-
 
 
 module.exports=router; //declare as a router, make all functions public

@@ -35,11 +35,9 @@ module.exports.processNewPost = (req, res, next)=>{ //make the function public w
         "username":"Richard Astley",
         "title":req.body.title,
         "category":req.body.category,
-        "post_content":req.body.post_content,
-        "photo_content": { //Learned from geeksforgeeks.org
-            data: fs.readFileSync(path.join(__dirname + '../uploads/' + req.file.filename)), //upload image to "uploads" directory. Reference file from form input.
-            contentType: 'image/png'
-        },
+        "text_content":req.body.text_content,
+        "photo_content":req.body.photo_content,
+        "pfp":"rick.webp",
         "postDate":"1/1/2022",
         "likes":0,
     });
@@ -47,6 +45,7 @@ module.exports.processNewPost = (req, res, next)=>{ //make the function public w
         if(err)
         {
             console.log(err)
+            console.log(req.file)
             res.end(err) //end response, do not send any data
         }
         else //redirect to the list page now that we have added the blog into the database
@@ -109,4 +108,5 @@ module.exports.deletePost = (req, res, next)=> { //make the function public with
         }
     })
 }
+
 
