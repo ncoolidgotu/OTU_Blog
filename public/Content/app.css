@@ -125,3 +125,15 @@ nav
 {
     background-color: rgb(0, 20, 44);
 }
+
+.post_pfp
+{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+.post_date
+{
+    font-size: 18px;
+    font-weight: 100;
+}
