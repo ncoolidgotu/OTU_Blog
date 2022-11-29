@@ -1,22 +1,21 @@
 <%- include ./../partials/main_nav.ejs  %>
-
 <!--Nate Coolidge - 100749708-->
+
 <div class="container">
 <br>
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <h1><%=title %></h1>
-            <form class="form" action="/blog-feed/add" method="post" enctype="multipart/form-data">
-
+            <form class="form" action="/blog-feed/update" method="post" enctype="multipart/form-data">
             <!--TITLE-->
                 <div class="form-group">
                     <label for="titleTextField">Post Title</label>
                     <input type="text" 
-                        class="form-control" 
+                        class="form-control"
+                        value = "<%= blog.title%>" 
                         id="titleTextField" 
                         placeholder="Enter your post title" 
                         name="title" 
-                        value ="<%= blog.title %>"
                         required>
                 </div>
             <!--CATEGORY--><!--radio button-->
@@ -26,9 +25,10 @@
                     <select type="text" 
                         class="form-control" 
                         id="categoryDropdown" 
-                        name="category"  
-                        value ="<%= blog.category %>"                    
+                        value = "<%= blog.category%>"
+                        name="category"                        
                         required>
+                        <option value="Memes">Memes</option>
                         <option value="Movies">Movies</option>
                         <option value="Music">Music</option>
                         <option value="Video Games">Video Games</option>
@@ -40,7 +40,6 @@
                         <option value="Food">Food</option>
                         <option value="Art">Art</option>
                         <option value="Sports">Sports</option>
-                        <option value="Memes">Memes</option>
                         <option value="Other">Other</option>
                     </select>
                 </div>
@@ -49,12 +48,11 @@
                     <label for="postTextField">Post</label>
                     <textarea type="text" 
                         class="form-control" 
-                        id="postTextField" 
+                        id="postTextField"
+                        value = "<%= blog.text_content%>" 
                         placeholder="Write a fun post here!" 
                         name="text_content" 
-                        required>
-                        <%= blog.text_content %>
-                        </textarea>
+                        required></textarea>
                 </div>
                 <!--post image-->
                 <div class="form-group">
@@ -62,9 +60,8 @@
                     <input type="file" 
                         class="form-control" 
                         id="photo_content" 
-                        value="" 
-                        name="photo_content"
-                        value="<%= blog.photo_content %>">
+                        value = "<%= blog.photo_content%>" 
+                        name="photo_content">
                 </div>
 
                 <br>
