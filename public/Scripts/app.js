@@ -5,8 +5,8 @@
     function Start()
     {
         console.log("App Started");
-        let deleteButton = document.querySelectorAll('.deleteConfirm'); //look for button with retireConfirm class (retire button)
-        for(button of retireButton)
+        let deleteButton = document.querySelectorAll('.deleteConfirm'); //look for button with deleteConfirm class (retire button)
+        for(button of deleteButton)
         {
             button.addEventListener('click',(event)=>{ //Listen for the user to click this button
                 if(!confirm("Delete this post?")) //Prompt the user to confirm they want to delete a post

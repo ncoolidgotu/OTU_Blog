@@ -8,16 +8,16 @@ let multer = require('multer');
 
 // StackOverflow - set up multer for storing uploaded files
 
-var storage = multer.diskStorage({
+let fileStorage = multer.diskStorage({
 	destination: (req, file, cb) => {
-		cb(null, '/'); //can't figure out file path -> should be assets/images/userUploads
+		cb(null, '/Assets/images/userUploads'); //can't figure out file path -> should be assets/images/userUploads
 	},
 	filename: (req, file, cb) => {
-		cb(null, file.fieldname + '-' + Date.now() + '.png');
+		cb(null, file.fieldname + '-' + Date.now());
 	}
 });
 
-var upload = multer({dest: '/'}); //can't figure out file path
+let upload = multer({storage: fileStorage}); //can't figure out file path
 
 
 // connect with blog model

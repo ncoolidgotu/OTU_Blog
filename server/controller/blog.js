@@ -36,7 +36,7 @@ module.exports.processNewPost = (req, res, next)=>{ //make the function public w
         "title":req.body.title,
         "category":req.body.category,
         "text_content":req.body.text_content,
-        "photo_content":req.body.photo_content,
+        "photo_content":req.file.path,
         "pfp":"rick.webp",
         "postDate":"1/1/2022",
         "likes":0,
