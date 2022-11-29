@@ -133,18 +133,5 @@ module.exports.viewProfile = (req, res, next)=>{ //make the function public with
 
 module.exports.likePost = (req, res, next)=>{ //make the function public within a module
     let id = req.params.id; //grab the selected post's id
-    let likedPost = Post({ //retrieve changes to apply the post, ID is preset.
-        "likes":"likes"+1,
-    });
-    Post.updateOne({_id:id}, likedPost,(err) => { //post the changes
-        if(err)
-        {
-            console.log(err)
-            res.end(err)
-        }
-        else //redirect to the list page now that we have updated the blog the database
-        {
-            res.redirect('/blog-feed') //go back to blog list view
-        }
-    })
-}
+    let counter = req.body.likes; //grab the selected post's id
+    Post.updateOne({_id:id}, {$inc: {likes: counter}}).exec()};
