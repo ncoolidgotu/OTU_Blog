@@ -26,6 +26,12 @@
                 <td colspan="2"><img class="post_image" src='/Assets/images/userUploads/<%=Postlist[count].photo_content%>'></td> 
             </tr>
         </tbody>
+        <tbody>
+            <td class="col-1" colspan="2">
+                <a href='like/<%=Postlist[count]._id %>'  class="btn btn-success">
+                <i class="fa-regular fa-heart"> Like <%= Postlist[count].likes%></i></a>
+            </td>
+        </tbody>
     </table>
 <% } %>
 

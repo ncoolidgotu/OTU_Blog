@@ -59,6 +59,10 @@ router.post('/update/:id', blogController.processPostUpdates);
 
 router.get('/delete/:id', blogController.deletePost);
 
+// Get to perform read operations
+
+router.post('/like/:id', blogController.likePost);
+
 
 // Get operation to view profile
 router.get('/profile', blogController.viewProfile);
