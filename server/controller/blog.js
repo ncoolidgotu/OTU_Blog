@@ -73,13 +73,15 @@ module.exports.displayUpdatePage = (req, res, next)=>{ //make the function publi
 module.exports.processPostUpdates = (req, res, next)=>{ //make the function public within a module
     let id = req.params.id; //grab the selected post's id
     let updatePost = Post({ //retrieve changes to apply the post, ID is preset.
-        "username":req.body.username,
+        "_id":id,
+        "username":"Richard Astley",
         "title":req.body.title,
         "category":req.body.category,
-        "text_content":req.body.description,
-        "postDate":req.body.aquisitionDate,
-        "likes":req.body.likes,
-        "comments":req.body.comments,
+        "text_content":req.body.text_content,
+        "photo_content":req.body.photo_content,
+        "pfp":"rick.webp",
+        "postDate": new Date(),
+        "likes":0,
     });
     Post.updateOne({_id:id}, updatePost,(err) => { //post the changes
         if(err)
