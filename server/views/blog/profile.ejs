@@ -1,0 +1,33 @@
+<%- include ./../partials/main_nav.ejs %>
+<!--Nate Coolidge - 100749708-->
+
+<main class="container">
+<br>
+<% for(let count=0; count < Postlist.length; count++) { %>
+    <table class="table table-primary table-hover">
+        <thead class="table-borderless"> 
+            <tr>
+                <th class="col-2" colspan="2"><img class="post_pfp" src='/Assets/images/<%=Postlist[count].pfp%>'> Richard Astley</th> 
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th class="col-2"><%=Postlist[count].title%></th> 
+                <th class="col-2 post_date"><%=Postlist[count].postDate%></th>
+            </tr>
+        </thead>
+        <tbody class="table-light text-start">
+            <tr>
+                <td colspan="2"><%=Postlist[count].text_content%></td> 
+            </tr>
+        </tbody>
+        <tbody class="table-light text-start">
+            <tr>
+                <td colspan="2"><img class="post_image" src='/Assets/images/userUploads/<%=Postlist[count].photo_content%>'></td> 
+            </tr>
+        </tbody>
+    </table>
+<% } %>
+
+</main>
+<%- include ./../partials/footer.ejs %>
