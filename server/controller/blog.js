@@ -23,7 +23,7 @@ module.exports.viewFeed = (req, res, next)=>{ //make the function public within 
             })
             console.log(postlist);
         }
-    });
+    }).sort({"postDate":-1});
 }
 
 module.exports.displayNewPost = (req, res, next)=>{ //make the function public within a module
@@ -36,9 +36,9 @@ module.exports.processNewPost = (req, res, next)=>{ //make the function public w
         "title":req.body.title,
         "category":req.body.category,
         "text_content":req.body.text_content,
-        "photo_content":req.file.path,
+        "photo_content":req.body.photo_content,
         "pfp":"rick.webp",
-        "postDate":"1/1/2022",
+        "postDate": new Date(),
         "likes":0,
     });
     Post.create(newPost,(err, Post) => { //add the blog to the database based on above information specified
