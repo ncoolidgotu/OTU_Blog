@@ -20,7 +20,6 @@ mongoDB.once('open', ()=> {
   console.log('connected to mongoDB')
 })
 
-
 let indexRouter = require('../routes/index'); //router for index page
 let usersRouter = require('../routes/users'); //route for users, not in use right now
 let blogRouter = require('../routes/blog'); //router for blog pages and actions
@@ -37,7 +36,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public'))); //make this directry easily accessible
 app.use(express.static(path.join(__dirname, '../../node_modules'))); //make this directry easily accessible
-//app.use(express.static(path.join(__dirname, '../views')));
 
 app.use('/', indexRouter); // attach main page to index view
 app.use('/users', usersRouter);
