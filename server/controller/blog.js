@@ -109,4 +109,19 @@ module.exports.deletePost = (req, res, next)=> { //make the function public with
     })
 }
 
-
+module.exports.viewProfile = (req, res, next)=>{ //make the function public within a module
+    Post.find((err, postlist)=>{
+        if(err)
+        {
+            return console.error(err);
+        }
+        else
+        {
+            res.render('blog/feed',{
+                title: 'My Feed', 
+                Postlist: postlist, //forward the blog database as an array
+            })
+            console.log(postlist);
+        }
+    }).sort({"postDate":-1});
+}
