@@ -74,12 +74,9 @@ module.exports.processPostUpdates = (req, res, next)=>{ //make the function publ
     let id = req.params.id; //grab the selected post's id
     let updatePost = Post({ //retrieve changes to apply the post, ID is preset.
         "_id":id,
-        "username":"Richard Astley",
         "title":req.body.title,
         "category":req.body.category,
         "text_content":req.body.text_content,
-        "photo_content":req.body.photo_content,
-        "pfp":"rick.webp",
         "postDate": new Date(),
         "likes":0,
     });

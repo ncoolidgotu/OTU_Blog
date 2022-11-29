@@ -6,9 +6,9 @@
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <h1><%=title %></h1>
-            <form class="form" action="/blog-feed/update" method="post" enctype="multipart/form-data">
+            <form class="form" method="post">
             <!--TITLE-->
-                <div class="form-group">
+                <div class="form-field">
                     <label for="titleTextField">Post Title</label>
                     <input type="text" 
                         class="form-control"
@@ -20,7 +20,7 @@
                 </div>
             <!--CATEGORY--><!--radio button-->
             <!--ask saief to put a litte arrow thingy-->
-                <div class="form-group">
+                <div class="form-field">
                     <label for="categoryDropdown">Category</label>
                     <select type="text" 
                         class="form-control" 
@@ -44,7 +44,7 @@
                     </select>
                 </div>
             <!--For the main post-->
-                <div class="form-group">
+                <div class="form-field">
                     <label for="postTextField">Post</label>
                     <textarea type="text" 
                         class="form-control" 
@@ -55,7 +55,7 @@
                         <%= blog.text_content%></textarea>
                 </div>
                 <!--post image-->
-                <div class="form-group">
+                <div class="form-field">
                     <label for="photo_content">Upload Image</label>
                     <input type="file" 
                         class="form-control" 
