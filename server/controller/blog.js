@@ -117,7 +117,7 @@ module.exports.viewProfile = (req, res, next)=>{ //make the function public with
         }
         else
         {
-            res.render('blog/feed',{
+            res.render('blog/profile',{
                 title: 'My Profile', 
                 Postlist: postlist, //forward the blog database as an array
             })
