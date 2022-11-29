@@ -104,10 +104,12 @@ module.exports.deletePost = (req, res, next)=> { //make the function public with
         }
         else //redirect to the list page now that we have deleted the blog from the database
         {
-            res.redirect('/blog-feed'); //go back to blog list view
+            res.redirect('/blog-feed/profile'); //go back to blog list view
         }
     })
 }
+
+
 
 module.exports.viewProfile = (req, res, next)=>{ //make the function public within a module
     Post.find((err, postlist)=>{
