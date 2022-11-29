@@ -37,8 +37,9 @@
                 <i class="fa-regular fa-trash-can">  Delete</i></a>
             </td>
             <td class="col-1" colspan="2">
-                <a href='like/<%=Postlist[count]._id %>'  class="btn btn-success">
-                <i class="fa-regular fa-heart"> Like <%= Postlist[count].likes%></i></a>
+                <form method="post">
+                    <input type="submit" name="likes" value="<%= Postlist[count].likes%>"/>
+                </form>
             </td>
         </tbody>
     </table>

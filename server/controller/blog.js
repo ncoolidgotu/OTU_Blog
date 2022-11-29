@@ -132,7 +132,9 @@ module.exports.likePost = (req, res, next)=>{ //make the function public within 
     let id = req.params.id; //grab the selected post's id
     let counter = req.body.likes; //grab the selected post's id
 
-    Post.findById(id,(err,postToLike) => {
+}
+
+   /* Post.findById(id,(err,postToLike) => {
         if(err)
         {
             console.log(err)
@@ -155,4 +157,4 @@ module.exports.likePost = (req, res, next)=>{ //make the function public within 
                     res.redirect('/blog-feed') //go back to blog list view
                 }
             })    
-        }})}
+        }})} */
