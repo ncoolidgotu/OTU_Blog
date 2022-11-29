@@ -57,7 +57,7 @@ module.exports.processNewPost = (req, res, next)=>{ //make the function public w
 
 module.exports.displayUpdatePage = (req, res, next)=>{ //make the function public within a module
     let id = req.params.id;
-    Post.findById(id,(err,blogToEdit)=>{
+    Post.findById(id,(err,postToEdit)=>{
         if(err)
         {
             console.log(err)
@@ -65,7 +65,7 @@ module.exports.displayUpdatePage = (req, res, next)=>{ //make the function publi
         }
         else
         {
-            res.render('blog/update',{title:'Update Post', blog:blogToEdit}) //render the uppdate view with parameters filled in for the blog to edit
+            res.render('blog/update',{title:'Update Post', blog:postToEdit}) //render the uppdate view with parameters filled in for the blog to edit
         }
     })
 }
