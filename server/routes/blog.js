@@ -60,4 +60,8 @@ router.post('/update/:id', blogController.processPostUpdates);
 router.get('/delete/:id', blogController.deletePost);
 
 
+// Get operation to view profile
+router.get('/profile', blogController.viewProfile);
+
+
 module.exports=router; //declare as a router, make all functions public
