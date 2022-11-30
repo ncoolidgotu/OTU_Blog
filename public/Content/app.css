@@ -145,7 +145,7 @@ nav
 }
 .username
 {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 600;
 
 }
@@ -156,11 +156,11 @@ nav
 }
 .post_title
 {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 500;
     font-family: 'Krub', sans-serif;
 }
-td.post_content
+.profile_bio
 {
     font-size: 20px;
     font-weight: 200;

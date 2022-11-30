@@ -6,13 +6,18 @@
 <table class="table table-primary table-hover">
     <thead class="table-borderless"> 
         <tr>
-            <th class="col-2" colspan="1"><img class="post_pfp" src='/Assets/images/rick.webp'> Richard Astley</th> <!--Demo for now. Will be mapped to user account in next release-->
-            <th class="col-2" colspan="1">Never Gonna Give You Up</th>
+            <th class="col-2" colspan="1"><img class="post_pfp" src='/Assets/images/rick.webp'>   Richard Astley</th> <!--Demo for now. Will be mapped to user account in next release-->
+            <td class="col-1">
+                <a href="#"  class="btn btn-dark">
+                <i class="fa-solid fa-right-from-bracket"></i> LOGOUT</i></a>
+                <a href="#"  class="btn btn-info">
+                <i class="fa-solid fa-key"></i> Change Password</i></a>
+            </td>
         </tr>
     </thead>
     <tbody class="table-light text-start">
         <tr>
-            <td colspan="2">Never gonna give you up, never gonna let you down</td> <!--Demo text for now. Will be mapped to user account in next release-->
+            <td colspan="4 profile_bio">Never gonna give you up, never gonna let you down</td> <!--Demo text for now. Will be mapped to user account in next release-->
         </tr>
     </tbody>
     <tbody class="table-light text-start">
@@ -21,14 +26,13 @@
         </tr>
     </tbody>
     <tbody> <!--Demo for now. Will be mapped to user account in next release-->
-        <td class="col-1">
-            <a href=''  class="btn btn-info">
-            <i class="fa-regular fa-book-user">Update Bio</i></a>
+        <td class="col-1" colspan="1">
+            <a href='#'  class="btn btn-info">
+            <i class="fa-light fa-book-user"></i>  Update Bio</i></a>
         </td>
-        <td class="col-1">
-            <a href=''
-            class="btn btn-danger deleteConfirm">
-            <i class="fa-regular fa-image">Update Profile Picture</i></a>
+        <td class="col-1" colspan="1">
+            <a href='#' class="btn btn-danger">
+            <i class="fa-regular fa-image"></i>  Update Profile Picture</i></a>
         </td>
     </tbody>
 </table>
@@ -60,12 +64,12 @@
         <tbody>
             <td class="col-1">
                 <a href='update/<%=Postlist[count]._id %>'  class="btn btn-info">
-                <i class="fa fa-pencil-alt">  Update</i></a>
+                <i class="fa fa-pencil-alt"></i>  Update</i></a>
             </td>
             <td class="col-1">
                 <a href='delete/<%=Postlist[count]._id %>'
                 class="btn btn-danger deleteConfirm">
-                <i class="fa-regular fa-trash-can">  Delete</i></a>
+                <i class="fa-regular fa-trash-can"></i>  Delete</i></a>
             </td>
         </tbody>
     </table>
