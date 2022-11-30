@@ -1,48 +1,49 @@
 <%- include header.ejs %>
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-custom">
     <div class="container-fluid">
-    <img class="navimg" src="/Assets/images/logo.png">
-    <a class="navbar-brand" style="margin-right: 0px;">OTUBlog</a>
+    <a href="/"><img class="navimg" href="/" src="/Assets/images/logo.png"></a>
+    <a class="navbar-brand" href="/" style="margin-right: 0px;">OTUBlog</a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarNav"> <!--For responsive design-->
-        <ul class="navbar-nav ms-auto justify-content-center">
+        <ul class="navbar-nav ms-auto">
         <li class="nav-item"> <!--Navigation items-->
-        <% if (title=="Dashboard") { %>
+        <% if (title=="Homepage") { %>
             <a class="nav-link active" aria-current="page" href="/home">
-            <i class="fa-solid fa-gauge"></i> Dashboard</a>
+            <i class="fa-solid fa-house"></i> Home  </a>
         <% } else {%> 
             <a class="nav-link" aria-current="page" href="/home">
-            <i class="fa-solid fa-gauge"></i> Dashboard</a>
-        <%} %>
+            <i class="fa-solid fa-house"></i> Home  </a>
+        <% } %>
         </li>
         <li class="nav-item">
-        <% if (title=="Asset List") { %>
+        <% if (title=="My Feed") { %>
             <a class="nav-link active" href="/blog-feed">
-            <i class="fa-regular fa-list"></i> List Assets</a>
+            <i class="fa-solid fa-rss"></i> My Feed  </a>
         <% } else {%> 
         <a class="nav-link" href="/blog-feed">
-        <i class="fa-regular fa-list"></i> List Assets</a>
+        <i class="fa-solid fa-rss"></i> My Feed  </a>
         <%} %>
         </li>
         <li class="nav-item">
-        <% if (title=="Asset Addition") { %>
+        <% if (title=="New Post") { %>
             <a class="nav-link active" href="/blog-feed/add">
-            <i class="fa-regular fa-plus"></i> Asset Addition</a>
+            <i class="fa-regular fa-plus"></i> New Post  </a>
             <%} else {%> 
             <a class="nav-link" href="/blog-feed/add">
-            <i class="fa-regular fa-plus"></i> Asset Addition</a>
+            <i class="fa-regular fa-plus"></i> New Post  </a>
             <%} %>
         </li>
         <li class="nav-item">
-        <% if (title=="Asset Net Book Value") { %>
-            <a class="nav-link active" href="/blog-feed/nbv">
-            <i class="fa-regular fa-file-pen"></i> NBV Report</a>
+        <% if (title=="My Profile") { %>
+            <a class="nav-link active" href="/profile">
+            <i class="fa-solid fa-user"></i> My Profile</a>
         <%} else {%> 
-            <a class="nav-link" href="/blog-feed/nbv">
-            <i class="fa-regular fa-file-pen"></i> NBV Report</a>
+            <a class="nav-link" href="/blog-feed/profile">
+            <i class="fa-solid fa-user"></i> My Profile</a>
         <%} %>
             
         </li>

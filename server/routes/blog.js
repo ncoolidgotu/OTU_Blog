@@ -1,7 +1,24 @@
 let express = require('express'); //use express library
 let router = express.Router(); //create router
 let mongoose = require('mongoose'); //use mongoose library
+let multer = require('multer');
+
 //Nate Coolidge - 100749708
+
+
+// StackOverflow - set up multer for storing uploaded files
+
+let fileStorage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, '/Assets/images/userUploads'); //can't figure out file path -> should be assets/images/userUploads
+	},
+	filename: (req, file, cb) => {
+		cb(null, file.fieldname + '-' + Date.now());
+	}
+});
+
+let upload = multer({storage: fileStorage}); //can't figure out file path
+
 
 // connect with blog model
 
@@ -24,7 +41,7 @@ router.get('/add', blogController.displayNewPost);
 
 // Post route for processing the Add page
 
-router.post('/add', blogController.processNewPost);
+router.post('/add', upload.single('photo_content'), blogController.processNewPost);
 
 
 // Update operation
@@ -42,7 +59,13 @@ router.post('/update/:id', blogController.processPostUpdates);
 
 router.get('/delete/:id', blogController.deletePost);
 
+// Get to perform read operations
 
+router.post('/like/:id', blogController.likePost);
+
+
+// Get operation to view profile
+router.get('/profile', blogController.viewProfile);
 
 
 module.exports=router; //declare as a router, make all functions public

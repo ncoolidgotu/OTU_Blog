@@ -27,9 +27,14 @@
             </tr>
         </tbody>
         <tbody>
-            <td class="col-1" colspan="2">
-                <a href='like/<%=Postlist[count]._id %>'  class="btn btn-success">
-                <i class="fa-regular fa-heart"> Like <%= Postlist[count].likes%></i></a>
+            <td class="col-1">
+                <a href='update/<%=Postlist[count]._id %>'  class="btn btn-info">
+                <i class="fa fa-pencil-alt">  Update</i></a>
+            </td>
+            <td class="col-1">
+                <a href='delete/<%=Postlist[count]._id %>'
+                class="btn btn-danger deleteConfirm">
+                <i class="fa-regular fa-trash-can">  Delete</i></a>
             </td>
         </tbody>
     </table>

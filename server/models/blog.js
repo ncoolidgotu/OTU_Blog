@@ -2,9 +2,11 @@ let mongoose = require('mongoose');
 //create blog post model
 let postsModel = mongoose.Schema({
     username: String,
+    pfp: String,
     title: String,
     category: String,
-    description: String,
+    text_content: String,
+    photo_content: String,
     postDate: Date,
     likes: Number,
     comments: String,

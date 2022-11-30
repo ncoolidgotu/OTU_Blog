@@ -3,6 +3,8 @@ let express = require('express'); //import express module
 let path = require('path'); //import paths
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let fs = require('fs');
+let multer = require('multer');
 
 //Nate Coolidge - 100749708
 
@@ -17,7 +19,6 @@ mongoDB.on('error',console.error.bind(console, 'Connection Error:')); //If error
 mongoDB.once('open', ()=> {
   console.log('connected to mongoDB')
 })
-
 
 let indexRouter = require('../routes/index'); //router for index page
 let usersRouter = require('../routes/users'); //route for users, not in use right now
@@ -35,7 +36,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public'))); //make this directry easily accessible
 app.use(express.static(path.join(__dirname, '../../node_modules'))); //make this directry easily accessible
-//app.use(express.static(path.join(__dirname, '../views')));
 
 app.use('/', indexRouter); // attach main page to index view
 app.use('/users', usersRouter);
@@ -56,5 +56,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {title: "Error 404"});
 });
+
+
 
 module.exports = app; //export the configuration for public use
