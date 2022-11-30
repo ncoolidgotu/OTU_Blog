@@ -7,7 +7,11 @@ let fs = require('fs');
 let multer = require('multer');
 let path = require('path');
 
-//Nate Coolidge - 100749708
+/*Nate Coolidge - 100749708*/ 
+/*Jaime Gonzalez Sanz - 100839804*/ 
+/*Caleb Fontaine - 100832588 */
+/*Saief Shams Murad - 100836639 */
+/*Haekang Song -100625189 */
 
 module.exports.viewFeed = (req, res, next)=>{ //make the function public within a module
     Post.find((err, postlist)=>{

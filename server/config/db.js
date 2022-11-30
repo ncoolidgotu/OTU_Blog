@@ -1,4 +1,8 @@
-//Nate Coolidge - 100749708
+/*Nate Coolidge - 100749708*/ 
+/*Jaime Gonzalez Sanz - 100839804*/ 
+/*Caleb Fontaine - 100832588 */
+/*Saief Shams Murad - 100836639 */
+/*Haekang Song -100625189 */
 
 module.exports = 
 {

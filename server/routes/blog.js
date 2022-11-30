@@ -3,7 +3,11 @@ let router = express.Router(); //create router
 let mongoose = require('mongoose'); //use mongoose library
 let multer = require('multer');
 
-//Nate Coolidge - 100749708
+/*Nate Coolidge - 100749708*/ 
+/*Jaime Gonzalez Sanz - 100839804*/ 
+/*Caleb Fontaine - 100832588 */
+/*Saief Shams Murad - 100836639 */
+/*Haekang Song -100625189 */
 
 
 // StackOverflow - set up multer for storing uploaded files
