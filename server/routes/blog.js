@@ -14,14 +14,14 @@ let multer = require('multer');
 
 let fileStorage = multer.diskStorage({
 	destination: (req, file, cb) => {
-		cb(null, '/Assets/images/userUploads'); //can't figure out file path -> should be assets/images/userUploads
+		cb(null, '/Assets/images/userUploads'); //Set destination path for upload
 	},
 	filename: (req, file, cb) => {
-		cb(null, file.fieldname + '-' + Date.now());
+		cb(null, file.fieldname + '-' + Date.now()); //Ensure file has a unique name
 	}
 });
 
-let upload = multer({storage: fileStorage}); //can't figure out file path
+let upload = multer({storage: fileStorage}); //Pass destination into multer function
 
 
 // connect with blog model
