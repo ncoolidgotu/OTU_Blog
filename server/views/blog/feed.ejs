@@ -8,18 +8,18 @@
     <table class="table table-primary">
         <thead class="table-borderless"> 
             <tr>
-                <th class="col-2" colspan="2"><img class="post_pfp" src='/Assets/images/<%=Postlist[count].pfp%>'> Richard Astley</th> 
+                <th class="col-2 username" colspan="2"><img class="post_pfp" src='/Assets/images/<%=Postlist[count].pfp%>'>     Richard Astley</th> 
             </tr>
         </thead>
         <thead>
             <tr>
-                <th class="col-2"><%=Postlist[count].title%></th> 
+                <th class="col-2 post_title"><%=Postlist[count].title%></th> 
                 <th class="col-2 post_date"><%=Postlist[count].postDate%></th>
             </tr>
         </thead>
         <tbody class="table-light text-start">
             <tr>
-                <td colspan="2"><%=Postlist[count].text_content%></td> 
+                <td colspan="2 post_content"><%=Postlist[count].text_content%></td> 
             </tr>
         </tbody>
         <tbody class="table-light text-start">

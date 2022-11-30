@@ -35,7 +35,7 @@ nav
 {
     font-family: 'Krub', sans-serif;
     font-weight: 900;
-    color: white;
+    color: orangered;
 }
 
 .container h3
@@ -70,6 +70,7 @@ nav
     width: 100%;
     text-align: center;
     font-size: 200%;
+    font-family: 'Krub', sans-serif;
   }
 
   .container iframe {
@@ -138,14 +139,32 @@ nav
 
 .post_pfp
 {
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
     border-radius: 50%;
+}
+.username
+{
+    font-size: 26px;
+    font-weight: 600;
+
 }
 .post_date
 {
     font-size: 18px;
     font-weight: 100;
+}
+.post_title
+{
+    font-size: 32px;
+    font-weight: 500;
+    font-family: 'Krub', sans-serif;
+}
+td.post_content
+{
+    font-size: 20px;
+    font-weight: 200;
+    font-family: 'Krub', sans-serif;
 }
 form
 {
