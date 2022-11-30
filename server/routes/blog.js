@@ -59,11 +59,11 @@ router.post('/update/:id', blogController.processPostUpdates);
 
 
 
-// Get to perform read operations
+// Get to perform delete operations
 
 router.get('/delete/:id', blogController.deletePost);
 
-// Get to perform read operations
+// Get to perform like post operations
 
 router.post('/like/:id', blogController.likePost);
 
