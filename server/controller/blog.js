@@ -137,7 +137,7 @@ module.exports.likePost = (req, res, next)=>{ //make the function public within 
     let counter = req.body.likes; //grab the selected post's id
 
 }
-
+    //WIP LIKE FEATURE
    /* Post.findById(id,(err,postToLike) => {
         if(err)
         {
