@@ -8,9 +8,10 @@
 /*Haekang Song -100625189 */
 body 
 { 
-    font-family: 'Lexend', sans-serif;
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-    min-height: 100vh;/*forces body to fill entire page no matter screen size*/
+    font-family: 'Krub', sans-serif;
+    background-repeat: no-repeat;
+    background: url("/Assets/images/PSX_20221129_215017.jpg") no-repeat center center fixed;
+    background-size : 100%;
     margin: 0;
     padding-top:90px;
     padding-bottom: 120px;
@@ -32,14 +33,22 @@ nav
 
 .container h1
 {
-    font-family: 'Lexend', sans-serif;
+    font-family: 'Krub', sans-serif;
     font-weight: 900;
+    color: white;
 }
 
 .container h3
 {
-    font-family: 'Lexend', sans-serif;
+    font-family: 'Krub', sans-serif;
     font-weight: 900;
+}
+
+.container h4
+{
+    font-family: 'Krub', sans-serif;
+    font-weight: 500;
+    color: white;
 }
 
 
@@ -151,4 +160,9 @@ form label
     font-size: 24px;
     color: rgb(231, 77, 0);
     text-align: left;
+}
+
+ #count_time
+{
+    color: white;
 }
