@@ -68,45 +68,46 @@ nav
   }
 
 /*set the button color and size*/
-.btn {
+.home_btn {
     font-size: 25px;
     padding: 15px 30px;
-    border: 3px solid darkcyan;
+    border: 3px solid orangered;
     background-color: transparent;
-    color: orange;
+    color: orangered;
     text-transform: uppercase;
     letter-spacing: 4px;
     font-weight: bold;
     position: relative; /*put fake btn*/
-    transition: all 0.3s;
-    overflow: hidden
+    transition: all 0.25s;
+    overflow: hidden;
+    text-decoration-line: none;
     
 }
 
 /*does not show outline when mouse click  */
-.btn:focus {
+.home_btn:focus {
     outline: none;
 }
 
 /*make fake button to make it more cool*/
-.btn::before {
+.home_btn::before {
     content: "";
     position: absolute; /*can change the size*/
     height: 100%;
     width: 100%;
-    background-color: darkcyan;
+    background-color: orangered;
     top: 0;
     left: -100%;
-    transition: all 0.5s;
+    transition: all 0.25s;
     z-index: -1; /*To show the text*/
 }
 
-.btn:hover::before {
+.home_btn:hover::before {
     transform: translateX(100%);
 }
 
-.btn:hover {
-    color: whitesmoke;
+.home_btn:hover {
+    color: white;
 }
 /*this is for home page*/
 
