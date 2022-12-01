@@ -79,7 +79,7 @@ nav
 
 /*set the button color and size*/
 .home_btn {
-    font-size: 25px;
+    font-size: 22px;
     padding: 15px 30px;
     border: 3px solid orangered;
     background-color: transparent;
@@ -91,10 +91,14 @@ nav
     transition: all 0.25s;
     overflow: hidden;
     text-decoration-line: none;
+    max-width: 337px;
 }
 .btn_home
 {
     overflow: hidden;
+    max-width: 337px ;
+    margin-left: auto;
+    padding: 10px 0;
 }
 
 /*does not show outline when mouse click  */
