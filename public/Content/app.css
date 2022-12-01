@@ -11,7 +11,7 @@ body
     font-family: 'Krub', sans-serif;
     background-repeat: no-repeat;
     background: url("/Assets/images/PSX_20221129_215017.jpg") no-repeat center center fixed;
-    background-size : 100%;
+    background-size : cover;
     margin: 0;
     padding-top:90px;
     padding-bottom: 120px;
@@ -113,10 +113,12 @@ nav
     left: -100%;
     transition: all 0.25s;
     z-index: -1; /*To show the text*/
+    visibility: hidden;
 }
 
 .home_btn:hover::before {
     transform: translateX(100%);
+    visibility: visible;
 }
 
 .home_btn:hover {
