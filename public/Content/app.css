@@ -91,7 +91,10 @@ nav
     transition: all 0.25s;
     overflow: hidden;
     text-decoration-line: none;
-    
+}
+.btn_home
+{
+    overflow: hidden;
 }
 
 /*does not show outline when mouse click  */
