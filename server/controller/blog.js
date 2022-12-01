@@ -55,6 +55,18 @@ module.exports.processNewPost = (req, res, next)=>{ //make the function public w
         else //redirect to the list page now that we have added the blog into the database
         {
             res.redirect('/blog-feed') //go back to blog list view
+            console.log(req.file)
+
+            let filename = Date.now() + req.file.originalname
+            console.log('test'+filename)
+            fs.rename(req.file.path, './public/Assets/images/userUploads/' + filename, function(err){
+                if(err){
+                    throw err;
+                }
+            })
+
+
+
         }
     })
 }
