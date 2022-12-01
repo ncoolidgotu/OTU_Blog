@@ -92,11 +92,12 @@ nav
     overflow: hidden;
     text-decoration-line: none;
     max-width: 337px;
+    width: 100%;
 }
 .btn_home
 {
     overflow: hidden;
-    max-width: 337px ;
+    max-width: 312px ;
     margin-left: auto;
     padding: 10px 0;
 }
