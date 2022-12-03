@@ -15,5 +15,19 @@ router.get('/', indexController.displayHomepage); //retrieve index view from ind
 /* GET home page. */
 router.get('/home', indexController.displayHomepage); //retrieve index view from indexController
 
+/* GET login page. */
+router.get('/login', indexController.displayLoginPage); //retrieve index view from indexController
+
+/* POST login page. */
+router.post('/login', indexController.processLoginPage); //retrieve index view from indexController
+
+/* GET login page. */
+router.get('/register', indexController.displayRegisterPage); //retrieve index view from indexController
+
+/* POST login page. */
+router.post('/register', indexController.processRegisterPage); //retrieve index view from indexController
+
+/* Get logout page */
+router.get('/logout', indexController.performLogout); //retrieve index view from indexController
 
 module.exports = router; //declare as a router, make all functions public

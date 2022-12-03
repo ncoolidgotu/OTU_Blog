@@ -28,6 +28,14 @@ let Post = require('../models/blog');
 
 let blogController = require('../controller/blog');
 
+function requireAuth(req,res,next)
+{
+	if(!req.isAuthenticated())
+	{
+		return res.redirect('/login');
+	}
+	next();
+}
 
 // Read Operation
 
@@ -39,11 +47,11 @@ router.get('/', blogController.viewFeed);
 // Create operation
 
 // Get route for displaying the Add page
-router.get('/add', blogController.displayNewPost);
+router.get('/add',requireAuth, blogController.displayNewPost);
 
 // Post route for processing the Add page
 
-router.post('/add', upload.single('photo_content'), blogController.processNewPost);
+router.post('/add',requireAuth, upload.single('photo_content'), blogController.processNewPost);
 
 
 // Update operation
@@ -53,13 +61,13 @@ router.get('/update/:id', blogController.displayUpdatePage);
 
 // Post route for processing the update page
 
-router.post('/update/:id', blogController.processPostUpdates);
+router.post('/update/:id',requireAuth, blogController.processPostUpdates);
 
 
 
 // Get to perform delete operations
 
-router.get('/delete/:id', blogController.deletePost);
+router.get('/delete/:id',requireAuth, blogController.deletePost);
 
 // Get to perform like post operations
 

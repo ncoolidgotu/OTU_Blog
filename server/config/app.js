@@ -19,7 +19,7 @@ let app = express();
 
 //create a user model instance
 let userModel = require('../models/user');
-let user = userModel.User;
+let User = userModel.User;
 
 //config mongoDB
 let mongoose = require('mongoose'); //library
@@ -33,9 +33,19 @@ mongoDB.once('open', ()=> {
   console.log('connected to mongoDB')
 });
 
+//Set-up Express Session
+app.use(session({
+  secret:"SomeSecret",
+  saveUninitialized:false,
+  resave:false
+}))
+
+//implement a User AUthentication
+passport.use(User.createStrategy());
+
 // serialize and deserialize the user information
-passport.serializeUser(user.serializeUser());
-passport.deserializeUser(user.deserializeUser());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 //initialize passport
 app.use(passport.initialize());
@@ -46,12 +56,7 @@ app.use(passport.session());
 app.use(flash());
 
 
-//Set-up Express Session
-app.use(session({
-  secret:"SomeSecret",
-  saveUninitialized:false,
-  resave:false
-}))
+
 
 let indexRouter = require('../routes/index'); //router for index page
 let usersRouter = require('../routes/users'); //route for users, not in use right now
