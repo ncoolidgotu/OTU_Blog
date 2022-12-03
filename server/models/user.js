@@ -9,7 +9,7 @@ let User = mongoose.Schema({
         trim:true,
         required:'Username is required'
     },
-    
+
     password:
     {
         type:String,
@@ -43,4 +43,4 @@ let User = mongoose.Schema({
 //configure options for user model
 let options = ({MissingPasswordError:'Wrong/Missing Password'});
 User.plugin(passportLocalMongoose,options);
-module.exports.User = mongoosee.model('User',User);
+module.exports.User = mongoose.model('User',User);
