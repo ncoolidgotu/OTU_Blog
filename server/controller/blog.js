@@ -35,12 +35,14 @@ module.exports.displayNewPost = (req, res, next)=>{ //make the function public w
 }
 
 module.exports.processNewPost = (req, res, next)=>{ //make the function public within a module
+    let filename = Date.now() + req.file.originalname
+    let photoPath = '/Assets/images/userUploads/'+filename
     let newPost = Post ({
         "username":"Richard Astley",
         "title":req.body.title,
         "category":req.body.category,
         "text_content":req.body.text_content,
-        "photo_content":req.body.photo_content,
+        "photo_content":photoPath,
         "pfp":"rick.webp",
         "postDate": new Date(),
         "likes":0,
@@ -56,8 +58,6 @@ module.exports.processNewPost = (req, res, next)=>{ //make the function public w
         {
             res.redirect('/blog-feed') //go back to blog list view
             console.log(req.file)
-
-            let filename = Date.now() + req.file.originalname
             console.log('test'+filename)
             fs.rename(req.file.path, './public/Assets/images/userUploads/' + filename, function(err){
                 if(err){
