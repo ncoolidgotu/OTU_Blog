@@ -5,12 +5,21 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let fs = require('fs');
 let multer = require('multer');
-
+let session = require('express-session');
+let passport = require('passport');
+let passportLocal = require('passport-local');
+let localStrategy = passportLocal.Strategy;
+let flash = require('connect-flash');
+let app = express();
 /*Nate Coolidge - 100749708*/ 
 /*Jaime Gonzalez Sanz - 100839804*/ 
 /*Caleb Fontaine - 100832588 */
 /*Saief Shams Murad - 100836639 */
 /*Haekang Song -100625189 */
+
+//create a user model instance
+let userModel = require('../models/user');
+let user = userModel.User;
 
 //config mongoDB
 let mongoose = require('mongoose'); //library
@@ -22,13 +31,32 @@ let mongoDB = mongoose.connection; //connect to mongoDB
 mongoDB.on('error',console.error.bind(console, 'Connection Error:')); //If error, send message to console
 mongoDB.once('open', ()=> {
   console.log('connected to mongoDB')
-})
+});
+
+// serialize and deserialize the user information
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
+
+//initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+//initialize flash
+app.use(flash());
+
+
+//Set-up Express Session
+app.use(session({
+  secret:"SomeSecret",
+  saveUninitialized:false,
+  resave:false
+}))
 
 let indexRouter = require('../routes/index'); //router for index page
 let usersRouter = require('../routes/users'); //route for users, not in use right now
 let blogRouter = require('../routes/blog'); //router for blog pages and actions
 
-let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views')); //make this directry easily accessible

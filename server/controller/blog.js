@@ -1,4 +1,5 @@
 let express = require('express'); //use express library
+
 let router = express.Router(); //create router
 let mongoose = require('mongoose'); //use mongoose library
 let Post = require('../models/blog') // connect with blog model
