@@ -14,7 +14,7 @@ let path = require('path');
 /*Haekang Song -100625189 */
 
 module.exports.viewFeed = (req, res, next)=>{ //make the function public within a module
-    Post.find((err, postlist)=>{
+    Post.findMany({username:'Richard Astley'},(err, postlist)=>{
         if(err)
         {
             return console.error(err);
