@@ -41,10 +41,10 @@ module.exports.displayNewPost = (req, res, next)=>{ //make the function public w
 }
 
 module.exports.processNewPost = (req, res, next)=>{ //make the function public within a module
-    let filename = Date.now() + req.file.originalname
+    let filename = Date.now() + req.file.filename
     let photoPath = '/Assets/images/userUploads/'+filename
     let newPost = Post ({
-        "username":req.user.username,
+        "username":req.user ? req.user.username:'',
         "title":req.body.title,
         "category":req.body.category,
         "text_content":req.body.text_content,
@@ -70,9 +70,6 @@ module.exports.processNewPost = (req, res, next)=>{ //make the function public w
                     throw err;
                 }
             })
-
-
-
         }
     })
 }
@@ -135,7 +132,7 @@ module.exports.deletePost = (req, res, next)=> { //make the function public with
 }
 
 module.exports.viewProfile = (req, res, next)=>{ //make the function public within a module
-    Post.find({username:'Richard Astley'},(err, postlist)=>{
+    Post.find({username:req.user ? req.user.username:''},(err, postlist)=>{
         if(err)
         {
             return console.error(err);
@@ -146,7 +143,9 @@ module.exports.viewProfile = (req, res, next)=>{ //make the function public with
                 title: 'My Profile', 
                 Postlist: postlist, //forward the blog database as an array
                 displayName: req.user ? req.user.displayName:'',
-                pfp:req.user ? req.user.pfp:''
+                pfp:req.user ? req.user.pfp:'',
+                myId:req.user ? req.user._id:'',
+                bio:req.user ? req.user.bio:'',
             })
             console.log(postlist);
         }
@@ -157,30 +156,52 @@ module.exports.viewProfile = (req, res, next)=>{ //make the function public with
 module.exports.likePost = (req, res, next)=>{ //make the function public within a module
     let id = req.params.id; //grab the selected post's id
     let counter = req.body.likes; //grab the selected post's id
-
 }
+
+
+/*
     //WIP LIKE FEATURE
-   /* Post.findById(id,(err,postToLike) => {
-        if(err)
-        {
-            console.log(err)
-            res.end(err)
-        }
-        else //redirect to the list page now that we have updated the blog the database
-        {
-            let updateLike = Post ({ //retrieve changes to apply the post, ID is preset.
-                "_id":postToLike.id,
-                "likes": counter+1,
-            });
+    Post.findById(id,(err,postToLike)) => {
+        let id = req.params.id; 
+        let updateLike = Post ({ //retrieve changes to apply the post, ID is preset.
+            "_id":postToLike.id,
+            "likes": counter+1,
+        });
+
             Post.updateOne({_id:id}, updateLike, (err) => {
-                if(err)
-                {
-                    console.log(err)
+            if(err)
+            {
+                console.log(err)
+                res.end(err)
+            }
+            else //redirect to the list page now that we have updated the blog the database
+            {
+                res.redirect('/blog-feed') //go back to blog list view
+            }
+        })    
+    }}
+
+
+module.exports.processPostUpdates = (req, res, next)=>{ 
+    let id = req.params.id; 
+    let updatePost = Post({ 
+        "_id":id,
+        "title":req.body.title,
+        "category":req.body.category,
+        "text_content":req.body.text_content,
+        "postDate": new Date(),
+        "likes":0,
+        });
+        Post.updateOne({_id:id}, updatePost,(err) => { 
+            if(err)
+            {
+               console.log(err)
                     res.end(err)
-                }
-                else //redirect to the list page now that we have updated the blog the database
-                {
-                    res.redirect('/blog-feed') //go back to blog list view
-                }
-            })    
-        }})} */
+            }
+            else //redirect to the list page now that we have updated the blog the database
+            {
+               res.redirect('/blog-feed') //go back to blog list view
+            }
+        })
+    }
+*/

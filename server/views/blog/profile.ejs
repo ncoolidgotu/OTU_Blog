@@ -23,7 +23,7 @@
     </thead>
     <tbody class="table-light text-start">
         <tr>
-            <td colspan="4 profile_bio">Never gonna give you up, never gonna let you down</td> <!--Demo text for now. Will be mapped to user account in next release-->
+            <td colspan="4 profile_bio"><%=bio%></td> <!--Demo text for now. Will be mapped to user account in next release-->
         </tr>
     </tbody>
     <tbody class="table-light text-start">
@@ -34,11 +34,11 @@
     <tbody> <!--Demo for now. Will be mapped to user account in next release-->
         <td class="col-1" colspan="1">
             <a href='#'  class="btn btn-info">
-            <i class="fa-light fa-book-user"></i>  Update Bio</i></a>
+            <i class="fa-regular fa-pen-to-square"></i>  Update Bio</i></a>
         </td>
         <td class="col-1" colspan="1">
-            <a href='#' class="btn btn-danger">
-            <i class="fa-regular fa-image"></i>  Update Profile Picture</i></a>
+            <a href='/editprofile/<%=myId%>' class="btn btn-danger">
+            <i class="fa-regular fa-user"></i>  Update Profile</i></a>
         </td>
     </tbody>
 </table>

@@ -30,6 +30,20 @@ let User = mongoose.Schema({
         trim:true,
         required:'pfp is required'
     },
+    email:
+    {
+        type:String,
+        default:"",
+        trim:true,
+        required:'email is required'
+    },
+    bio:
+    {
+        type:String,
+        default:"",
+        trim:true,
+        required:'bio is required'
+    },
     created:{
         type:Date,
         default: Date.now

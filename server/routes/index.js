@@ -42,4 +42,10 @@ router.post('/register', upload.single('pfp'),indexController.processRegisterPag
 /* Get logout page */
 router.get('/logout', indexController.performLogout); //retrieve index view from indexController
 
+/* Get Edit Page */
+router.get('/editprofile/:id', indexController.displayEditPage); //retrieve edit view from indexController
+
+/* Post Edit Page */
+router.post('/editprofile/:id', upload.single('pfp'), indexController.processEditPage); //retrieve edot view from indexController
+
 module.exports = router; //declare as a router, make all functions public

@@ -27,7 +27,7 @@ module.exports.displayLoginPage = (req, res,next) => {
         {
             title: 'Login',
             message: req.flash('loginMessage'),
-            displayName: req.user ? req.user.displayName: ''
+            displayName: req.user ? req.user.displayName:''
         })
     }
     else
@@ -76,14 +76,15 @@ module.exports.displayRegisterPage = (req,res,next) =>{
     }
 }
 module.exports.processRegisterPage = (req,res,next) => {
-    let filename = Date.now() + req.file.originalname
+    let filename = Date.now() + req.file.filename
     let photoPath = '/Assets/images/userUploads/'+filename
     let newUser = new User({
         username: req.body.username,
         password: req.body.password,
         email:req.body.email,
         pfp:photoPath,
-        displayName:req.body.displayName
+        displayName:req.body.displayName,
+        bio:req.body.bio
     })
     User.register(newUser, req.body.password, (err) =>
     {
@@ -127,4 +128,48 @@ module.exports.performLogout = (req,res,next)=>
         }
     });
     res.redirect('/');
+}
+
+
+module.exports.displayEditPage = (req, res, next)=>{ //make the function public within a module
+    let id = req.params.id;
+    User.findById(id,(err,editUser)=>{
+        if(err)
+        {
+            console.log(err)
+            res.end(err)
+        }
+        else
+        {
+            res.render('auth/editprofile',{
+                title:'Update User',
+                user:editUser,
+                displayName: req.user ? req.user.displayName:''
+            }) //render the uppdate view with parameters filled in for the blog to edit
+        }
+    })
+}
+
+
+
+module.exports.processEditPage = (req,res,next) => {
+    let id = req.params.id; //grab the selected post's id
+    let editUser = User({
+        "_id":id,
+        "username": req.body.username,
+        "password": req.body.password,
+        "email":req.body.email,
+        "displayName":req.body.displayName
+    })
+    User.updateOne({_id:id}, editUser,(err) => { //post the changes
+        if(err)
+        {
+            console.log(err)
+            res.end(err)
+        }
+        else //redirect to the list page now that we have updated the blog the database
+        {
+            res.redirect('/blog-feed') //go back to blog list view
+        }
+    })
 }
