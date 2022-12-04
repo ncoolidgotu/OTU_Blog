@@ -25,7 +25,8 @@ module.exports.viewFeed = (req, res, next)=>{ //make the function public within 
             res.render('blog/feed',{
                 title: 'My Feed', 
                 Postlist: postlist, //forward the blog database as an array
-                displayName: req.user ? req.user.displayName:''
+                displayName: req.user ? req.user.displayName:'',
+                pfp:req.user ? req.user.pfp:'',
             })
             console.log(postlist);
         }
@@ -43,12 +44,12 @@ module.exports.processNewPost = (req, res, next)=>{ //make the function public w
     let filename = Date.now() + req.file.originalname
     let photoPath = '/Assets/images/userUploads/'+filename
     let newPost = Post ({
-        "username":"Richard Astley",
+        "username":req.user.username,
         "title":req.body.title,
         "category":req.body.category,
         "text_content":req.body.text_content,
         "photo_content":photoPath,
-        "pfp":"rick.webp",
+        "pfp":req.user.pfp,
         "postDate": new Date(),
         "likes":0,
     });
@@ -133,8 +134,6 @@ module.exports.deletePost = (req, res, next)=> { //make the function public with
     })
 }
 
-
-
 module.exports.viewProfile = (req, res, next)=>{ //make the function public within a module
     Post.find({username:'Richard Astley'},(err, postlist)=>{
         if(err)
@@ -146,7 +145,8 @@ module.exports.viewProfile = (req, res, next)=>{ //make the function public with
             res.render('blog/profile',{
                 title: 'My Profile', 
                 Postlist: postlist, //forward the blog database as an array
-                displayName: req.user ? req.user.displayName:''
+                displayName: req.user ? req.user.displayName:'',
+                pfp:req.user ? req.user.pfp:''
             })
             console.log(postlist);
         }

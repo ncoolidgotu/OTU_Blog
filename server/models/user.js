@@ -9,7 +9,6 @@ let User = mongoose.Schema({
         trim:true,
         required:'Username is required'
     },
-    /*
     password:
     {
         type:String,
@@ -17,14 +16,19 @@ let User = mongoose.Schema({
         trim:true,
         required:'Password is required'
     },
-    */
     displayName:
     {
         type:String,
         default:"",
         trim:true,
         required:'DisplayName is required'
-
+    },
+    pfp:
+    {
+        type:String,
+        default:"",
+        trim:true,
+        required:'pfp is required'
     },
     created:{
         type:Date,

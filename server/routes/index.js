@@ -7,7 +7,19 @@
 var express = require('express');
 var router = express.Router();
 let indexController = require("../controller/home"); //access index controller module
+let multer = require('multer');
 
+let upload= multer({dest:'./public/Assets/images/userUploads'})
+// connect with blog model
+
+function requireAuth(req,res,next)
+{
+	if(!req.isAuthenticated())
+	{
+		return res.redirect('/login');
+	}
+	next();
+}
 
 /* GET home page. */
 router.get('/', indexController.displayHomepage); //retrieve index view from indexController
@@ -25,7 +37,7 @@ router.post('/login', indexController.processLoginPage); //retrieve index view f
 router.get('/register', indexController.displayRegisterPage); //retrieve index view from indexController
 
 /* POST login page. */
-router.post('/register', indexController.processRegisterPage); //retrieve index view from indexController
+router.post('/register', upload.single('pfp'),indexController.processRegisterPage); //retrieve index view from indexController
 
 /* Get logout page */
 router.get('/logout', indexController.performLogout); //retrieve index view from indexController

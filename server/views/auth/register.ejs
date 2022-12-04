@@ -11,7 +11,7 @@
 <div class ="row">
     <div class="offset-md-4 col-md-4">
         <h1>Please Register</h1>
-        <form method="post" autocomplete="off">
+        <form method="post" autocomplete="off"  enctype="multipart/form-data">
             <fieldset class="form-group">
                 <label for="username"></label>
                 <input type="text" class="form-control"
@@ -40,13 +40,22 @@
                 placeholder="Enter display name"
                 id ="displayName" required>
             </fieldset>
+                <div class="form-field">
+                    <label for="pfp">Upload Image</label>
+                    <input type="file" 
+                        class="form-control" 
+                        id="pfp" 
+                        value="" 
+                        name="pfp"
+                        accept="image/png,image/gif,image/jpeg">
+                </div>
             <fieldset class="form-group text-right">
-                <input type="submit" class="btn btn-success" value="Login">
+                <input type="submit" class="btn btn-success" value="Register">
+                <a href="/">
+                <input type="button" class="btn btn-warning" value="Cancel">
+                </a>
+            </fieldset>
             
-                <a href="/"></a>
-                <input type="button" class="btn btun-warning" value="Cancel">
-            </a>
-        </fieldset>
         </form>
     </div>
 </div>

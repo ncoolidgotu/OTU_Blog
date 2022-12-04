@@ -9,18 +9,6 @@ let multer = require('multer');
 /*Saief Shams Murad - 100836639 */
 /*Haekang Song -100625189 */
 
-
-// StackOverflow - set up multer for storing uploaded files
-
-/*let  = multer.diskStorage({
-	filename: (req, file, cb) => {
-		cb(null, Date.now() + file.originalname); //Ensure file has a unique name
-	}
-});
-
-let upload = multer({dest: './public/Assets/images/userUploads'}); //Pass destination into multer function
-
-*/
 let upload= multer({dest:'./public/Assets/images/userUploads'})
 // connect with blog model
 

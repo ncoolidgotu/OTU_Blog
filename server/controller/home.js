@@ -2,6 +2,7 @@ let express = require('express'); //use express library
 let router = express.Router(); //create router
 let mongoose = require('mongoose'); //use mongoose library
 let passport = require('passport');
+let fs = require('fs');
 
 let userModel = require('../models/user');
 let User = userModel.User;
@@ -75,10 +76,13 @@ module.exports.displayRegisterPage = (req,res,next) =>{
     }
 }
 module.exports.processRegisterPage = (req,res,next) => {
+    let filename = Date.now() + req.file.originalname
+    let photoPath = '/Assets/images/userUploads/'+filename
     let newUser = new User({
         username: req.body.username,
-        //password: req.body.password,
+        password: req.body.password,
         email:req.body.email,
+        pfp:photoPath,
         displayName:req.body.displayName
     })
     User.register(newUser, req.body.password, (err) =>
@@ -104,6 +108,11 @@ module.exports.processRegisterPage = (req,res,next) => {
             return passport.authenticate('local')(req,res,()=>
             {
                 res.redirect('blog-feed');
+                fs.rename(req.file.path, './public/Assets/images/userUploads/' + filename, function(err){
+                    if(err){
+                        throw err;
+                    }
+                })
             })
             
         }
