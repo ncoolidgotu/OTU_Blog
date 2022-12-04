@@ -15,7 +15,7 @@ let path = require('path');
 /*Haekang Song -100625189 */
 
 module.exports.viewFeed = (req, res, next)=>{ //make the function public within a module
-    Post.find({username:'Richard Astley'},(err, postlist)=>{
+    Post.find((err, postlist)=>{
         if(err)
         {
             return console.error(err);
@@ -25,6 +25,7 @@ module.exports.viewFeed = (req, res, next)=>{ //make the function public within 
             res.render('blog/feed',{
                 title: 'My Feed', 
                 Postlist: postlist, //forward the blog database as an array
+                displayName: req.user ? req.user.displayName:''
             })
             console.log(postlist);
         }
@@ -32,7 +33,10 @@ module.exports.viewFeed = (req, res, next)=>{ //make the function public within 
 }
 
 module.exports.displayNewPost = (req, res, next)=>{ //make the function public within a module
-    res.render('blog/add',{title: 'New Post'}) //render blog addition view
+    res.render('blog/add',{
+        title: 'New Post',
+        displayName: req.user ? req.user.displayName:''
+    }) //render blog addition view
 }
 
 module.exports.processNewPost = (req, res, next)=>{ //make the function public within a module
@@ -82,7 +86,11 @@ module.exports.displayUpdatePage = (req, res, next)=>{ //make the function publi
         }
         else
         {
-            res.render('blog/update',{title:'Update Post', blog:postToEdit}) //render the uppdate view with parameters filled in for the blog to edit
+            res.render('blog/update',{
+                title:'Update Post',
+                blog:postToEdit,
+                displayName: req.user ? req.user.displayName:''
+            }) //render the uppdate view with parameters filled in for the blog to edit
         }
     })
 }
@@ -128,7 +136,7 @@ module.exports.deletePost = (req, res, next)=> { //make the function public with
 
 
 module.exports.viewProfile = (req, res, next)=>{ //make the function public within a module
-    Post.find((err, postlist)=>{
+    Post.find({username:'Richard Astley'},(err, postlist)=>{
         if(err)
         {
             return console.error(err);
@@ -138,6 +146,7 @@ module.exports.viewProfile = (req, res, next)=>{ //make the function public with
             res.render('blog/profile',{
                 title: 'My Profile', 
                 Postlist: postlist, //forward the blog database as an array
+                displayName: req.user ? req.user.displayName:''
             })
             console.log(postlist);
         }

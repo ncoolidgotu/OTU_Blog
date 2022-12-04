@@ -13,7 +13,10 @@ let User = userModel.User;
 /*Haekang Song -100625189 */
 
 module.exports.displayHomepage = (req, res, next)=>{ //make the function public within a module
-    res.render('home',{title: 'Homepage'})
+    res.render('home',{
+        title: 'Homepage',
+        displayName: req.user ? req.user.displayName:''
+    })
 }
 
 module.exports.displayLoginPage = (req, res,next) => {
@@ -109,6 +112,10 @@ module.exports.processRegisterPage = (req,res,next) => {
 
 module.exports.performLogout = (req,res,next)=>
 {
-    req.logout();
+    req.logout(function(err){
+        if(err){
+            return next(err);
+        }
+    });
     res.redirect('/');
 }
