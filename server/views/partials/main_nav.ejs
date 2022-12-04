@@ -43,20 +43,26 @@
             <%} else {%> 
             <a class="nav-link" href="/blog-feed/add">
             <i class="fa-regular fa-plus"></i> New Post  </a>
-            <%} %>
+            <% } %>
         </li>
-        
-        <% if(typeof displayName=='string' && displayName) { %>
-            <li class="navbar-text"><i class="fas fa-lg fa-user"><a class="nav-link active" href="/blog-feed/profile"></i>Hi, <%= displayName %> 
-            </li>
-            <li class="nav-item">
-            <a href="/logout" class="nav-link">
-            <i class="fas fa-lg fa-sign-out-alt"></i>Logout</a></li>
-        <% } else { %>
+        <li class ="nav-item">
+        <% if(typeof displayName=='string' && displayName) {%>
+            <% if (title=='My Profile') {%>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/blog-feed/profile">
+                    <i class="fas fa-lg fa-user"></i>  Hi, <%= displayName %></a></li>
+                <% } else { %> 
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog-feed/profile">
+                    <i class="fas fa-lg fa-user"></i>  Hi, <%= displayName %></a></li>
+                <% } %>
+            <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-lg fa-sign-out-alt"></i>Logout</a></li>
+            <% } else { %>
             <li class="nav-item">
                 <a href="/login" class="nav-link">
                 <i class="fas fa-lg fa-sign-in-alt"></i>Login</a></li>
-        <% } %>
+            </li>
+            <% } %>
         </ul>
     </div>
     </div>
