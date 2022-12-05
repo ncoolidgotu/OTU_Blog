@@ -49,7 +49,7 @@ router.get('/update/:id', blogController.displayUpdatePage);
 
 // Post route for processing the update page
 
-router.post('/update/:id',requireAuth, blogController.processPostUpdates);
+router.post('/update/:id',requireAuth, upload.single('photo_content'), blogController.processPostUpdates);
 
 
 
@@ -64,6 +64,8 @@ router.post('/like/:id', blogController.likePost);
 
 // Get operation to view profile
 router.get('/profile', blogController.viewProfile);
+
+
 
 
 module.exports=router; //declare as a router, make all functions public

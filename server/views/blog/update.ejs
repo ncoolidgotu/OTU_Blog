@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <h1><%=title %></h1>
-            <form class="form" method="post">
+            <form class="form" method="post" enctype="multipart/form-data">
             <!--TITLE-->
                 <div class="form-field">
                     <label for="titleTextField">Post Title</label>
@@ -66,7 +66,8 @@
                         class="form-control" 
                         id="photo_content" 
                         value = "<%= blog.photo_content%>" 
-                        name="photo_content">
+                        name="photo_content"
+                        required>
                 </div>
 
                 <br>

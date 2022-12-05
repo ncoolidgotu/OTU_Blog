@@ -45,6 +45,7 @@ module.exports.processNewPost = (req, res, next)=>{ //make the function public w
     let photoPath = '/Assets/images/userUploads/'+filename
     let newPost = Post ({
         "username":req.user ? req.user.username:'',
+        "displayName":req.user ? req.user.displayName:'',
         "title":req.body.title,
         "category":req.body.category,
         "text_content":req.body.text_content,
@@ -64,7 +65,6 @@ module.exports.processNewPost = (req, res, next)=>{ //make the function public w
         {
             res.redirect('/blog-feed') //go back to blog list view
             console.log(req.file)
-            console.log('test'+filename)
             fs.rename(req.file.path, './public/Assets/images/userUploads/' + filename, function(err){
                 if(err){
                     throw err;
@@ -94,13 +94,18 @@ module.exports.displayUpdatePage = (req, res, next)=>{ //make the function publi
 }
 
 module.exports.processPostUpdates = (req, res, next)=>{ //make the function public within a module
+    let filename = Date.now() + req.file.filename
+    let photoPath = '/Assets/images/userUploads/'+filename
     let id = req.params.id; //grab the selected post's id
     let updatePost = Post({ //retrieve changes to apply the post, ID is preset.
         "_id":id,
+        "username":req.user ? req.user.username:'',
+        "displayName":req.user ? req.user.displayName:'',
         "title":req.body.title,
         "category":req.body.category,
         "text_content":req.body.text_content,
         "postDate": new Date(),
+        "photo_content":photoPath,
         "likes":0,
     });
     Post.updateOne({_id:id}, updatePost,(err) => { //post the changes
@@ -112,6 +117,11 @@ module.exports.processPostUpdates = (req, res, next)=>{ //make the function publ
         else //redirect to the list page now that we have updated the blog the database
         {
             res.redirect('/blog-feed') //go back to blog list view
+            fs.rename(req.file.path, './public/Assets/images/userUploads/' + filename, function(err){
+                if(err){
+                    throw err;
+                }
+            })
         }
     })
 }

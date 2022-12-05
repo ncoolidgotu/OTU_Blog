@@ -8,6 +8,7 @@ let mongoose = require('mongoose');
 //create blog post model
 let postsModel = mongoose.Schema({
     username: String,
+    displayName: String,
     pfp: String,
     title: String,
     category: String,
