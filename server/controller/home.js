@@ -130,7 +130,6 @@ module.exports.performLogout = (req,res,next)=>
     res.redirect('/');
 }
 
-
 module.exports.displayEditPage = (req, res, next)=>{ //make the function public within a module
     let id = req.params.id;
     User.findById(id,(err,editUser)=>{
@@ -150,8 +149,6 @@ module.exports.displayEditPage = (req, res, next)=>{ //make the function public 
     })
 }
 
-
-
 module.exports.processEditPage = (req,res,next) => {
     let id = req.params.id; //grab the selected post's id
     let editUser = User({
@@ -159,6 +156,8 @@ module.exports.processEditPage = (req,res,next) => {
         "username": req.body.username,
         "password": req.body.password,
         "email":req.body.email,
+        "pfp":req.user ? req.user.pfp:'',
+        "bio":req.body.bio,
         "displayName":req.body.displayName
     })
     User.updateOne({_id:id}, editUser,(err) => { //post the changes
@@ -170,6 +169,58 @@ module.exports.processEditPage = (req,res,next) => {
         else //redirect to the list page now that we have updated the blog the database
         {
             res.redirect('/blog-feed') //go back to blog list view
+            console.log(editUser)
+        }
+    })
+}
+
+module.exports.displayEditPfP = (req, res, next)=>{ //make the function public within a module
+    let id = req.params.id;
+    User.findById(id,(err,editUser)=>{
+        if(err)
+        {
+            console.log(err)
+            res.end(err)
+        }
+        else
+        {
+            res.render('auth/editpfp',{
+                title:'Update User',
+                user:editUser,
+                displayName: req.user ? req.user.displayName:''
+            }) //render the uppdate view with parameters filled in for the blog to edit
+        }
+    })
+}
+
+module.exports.processEditPfP = (req,res,next) => {
+    let id = req.params.id; //grab the selected post's id
+    let filename = Date.now() + req.file.filename
+    let photoPath = '/Assets/images/userUploads/'+filename
+    let editUser = User({
+        "_id":id,
+        "username": req.user ? req.user.username:'',
+        "password": req.user ? req.user.password:'',
+        "email":req.user ? req.user.email:'',
+        "pfp":photoPath,
+        "bio":req.user ? req.user.bio:'',
+        "displayName":req.user ? req.user.displayName:''
+    })
+    User.updateOne({_id:id}, editUser,(err) => { //post the changes
+        if(err)
+        {
+            console.log(err)
+            res.end(err)
+        }
+        else //redirect to the list page now that we have updated the blog the database
+        {
+            res.redirect('/blog-feed') //go back to blog list view
+            fs.rename(req.file.path, './public/Assets/images/userUploads/' + filename, function(err){
+                if(err){
+                    throw err;
+                }
+            })
+            console.log(editUser)
         }
     })
 }
