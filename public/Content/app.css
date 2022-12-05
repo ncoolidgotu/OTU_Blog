@@ -46,10 +46,23 @@ nav
 
 .container h4
 {
-    font-family: 'Krub', sans-serif;
-    font-weight: 500;
+    font-family: sans-serif;
+    font-weight: bold;
     color: white;
+    position: relative;
+    animation: slide 1s ease-out;
 }
+@keyframes slide {
+    from{
+        left: -400px;
+        opacity: 0;
+    }
+    to{
+        left: 0.3%;
+        opacity: 1;
+    }
+}
+
 
 
 .navimg
@@ -80,8 +93,9 @@ nav
 /*set the button color and size*/
 .home_btn {
     font-size: 22px;
-    padding: 15px 30px;
+    padding: 15px 2px;
     border: 3px solid orangered;
+    border-radius: 30px;
     background-color: transparent;
     color: orangered;
     text-transform: uppercase;
