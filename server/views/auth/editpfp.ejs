@@ -1,0 +1,33 @@
+<%- include ./../partials/main_nav.ejs  %>
+
+<main class="container">
+
+
+<div class ="row">
+    <div class="offset-md-4 col-md-4">
+        <h1>Edit your profile</h1>
+        <form method="post" autocomplete="off" enctype="multipart/form-data">
+            <div class="form-field">
+                    <label for="pfp">Upload Image</label>
+                    <input type="file" 
+                        class="form-control" 
+                        id="pfp" 
+                        value="" 
+                        name="pfp"
+                        accept="image/png,image/gif,image/jpeg"
+                        required>
+            </div>
+            <fieldset class="form-group text-right">
+                <input type="submit" class="btn btn-success" value="Submit">
+                <a href="/blog-feed/profile">
+                <input type="button" class="btn btn-warning" value="Cancel">
+                </a>
+            </fieldset>
+            
+        </form>
+    </div>
+</div>
+        
+</main>
+
+<%- include ./../partials/footer.ejs %>

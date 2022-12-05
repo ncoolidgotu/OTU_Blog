@@ -12,13 +12,7 @@
 <table class="table table-primary table-hover">
     <thead class="table-borderless"> 
         <tr>
-            <th class="col-2" colspan="1"><img class="post_pfp" src=<%=pfp%>>   <%=displayName%> </th> <!--Demo for now. Will be mapped to user account in next release-->
-            <td class="col-1">
-                <a href="#"  class="btn btn-dark">
-                <i class="fa-solid fa-right-from-bracket"></i> LOGOUT</i></a>
-                <a href="#"  class="btn btn-info">
-                <i class="fa-solid fa-key"></i> Change Password</i></a>
-            </td>
+            <th class="col-2" colspan="2"><img class="post_pfp" src=<%=pfp%>>   <%=displayName%> </th> <!--Demo for now. Will be mapped to user account in next release-->
         </tr>
     </thead>
     <tbody class="table-light text-start">
@@ -33,12 +27,12 @@
     </tbody>
     <tbody> <!--Demo for now. Will be mapped to user account in next release-->
         <td class="col-1" colspan="1">
-            <a href='#'  class="btn btn-info">
-            <i class="fa-regular fa-pen-to-square"></i>  Update Bio</i></a>
+            <a href='/editpfp/<%=myId%>'  class="btn btn-info">
+            <i class="fa-light fa-image"></i>  Update Profile Picture</i></a>
         </td>
         <td class="col-1" colspan="1">
             <a href='/editprofile/<%=myId%>' class="btn btn-danger">
-            <i class="fa-regular fa-user"></i>  Update Profile</i></a>
+            <i class="fa-regular fa-pen-to-square"></i>  Edit Profile</i></a>
         </td>
     </tbody>
 </table>

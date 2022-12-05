@@ -37,7 +37,7 @@ router.post('/login', indexController.processLoginPage); //retrieve index view f
 router.get('/register', indexController.displayRegisterPage); //retrieve index view from indexController
 
 /* POST login page. */
-router.post('/register', upload.single('pfp'),indexController.processRegisterPage); //retrieve index view from indexController
+router.post('/register',upload.single('pfp'),indexController.processRegisterPage); //retrieve index view from indexController
 
 /* Get logout page */
 router.get('/logout', indexController.performLogout); //retrieve index view from indexController
@@ -46,6 +46,12 @@ router.get('/logout', indexController.performLogout); //retrieve index view from
 router.get('/editprofile/:id', indexController.displayEditPage); //retrieve edit view from indexController
 
 /* Post Edit Page */
-router.post('/editprofile/:id', upload.single('pfp'), indexController.processEditPage); //retrieve edot view from indexController
+router.post('/editprofile/:id', indexController.processEditPage); //retrieve edot view from indexController
+
+/* Get Edit Page */
+router.get('/editpfp/:id', indexController.displayEditPfP); //retrieve edit view from indexController
+
+/* Post Edit Page */
+router.post('/editpfp/:id',upload.single('pfp'),indexController.processEditPfP); //retrieve edot view from indexController
 
 module.exports = router; //declare as a router, make all functions public

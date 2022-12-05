@@ -25,8 +25,8 @@ module.exports.viewFeed = (req, res, next)=>{ //make the function public within 
             res.render('blog/feed',{
                 title: 'My Feed', 
                 Postlist: postlist, //forward the blog database as an array
-                displayName: req.user ? req.user.displayName:'',
-                pfp:req.user ? req.user.pfp:'',
+                message: req.flash('registerMessage'),
+                displayName: req.user ? req.user.displayName: ''
             })
             console.log(postlist);
         }
