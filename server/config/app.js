@@ -11,6 +11,9 @@ let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
 let app = express();
+
+let passportFacebook = require('passport-facebook');
+let facebookStrategy = passportFacebook.Strategy;
 /*Nate Coolidge - 100749708*/ 
 /*Jaime Gonzalez Sanz - 100839804*/ 
 /*Caleb Fontaine - 100832588 */
