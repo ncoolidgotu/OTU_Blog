@@ -30,6 +30,10 @@ router.get('/home', indexController.displayHomepage); //retrieve index view from
 /* GET login page. */
 router.get('/login', indexController.displayLoginPage); //retrieve index view from indexController
 
+router.get('/auth/facebook', indexController.facebookAuth); //retrieve index view from indexController
+
+router.get('/facebook/callback', indexController.facebookCallback)
+
 /* POST login page. */
 router.post('/login', indexController.processLoginPage); //retrieve index view from indexController
 

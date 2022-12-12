@@ -59,6 +59,15 @@ module.exports.processLoginPage = (req, res, next) => {
     })(req, res, next)
 }
 
+module.exports.facebookCallback = passport.authenticate('facebook', {
+    successRedirect:'/blog-feed',
+    failedRedirect:'/auth/login',
+})
+
+module.exports.facebookAuth = passport.authenticate('facebook', {
+    scope:'email'
+})
+
 module.exports.displayRegisterPage = (req,res,next) =>{
     //check if the user is not already logged in
     if(!req.user)
