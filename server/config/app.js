@@ -81,7 +81,7 @@ function(accessToken, refreshToken, profile, done) {
       newUser.username = profile.id; // set the users facebook id
       //newUser.token = token; // we will save the token that facebook provi
       newUser.displayName = profile.displayName
-      newUser.email = "happy@workpls.com"
+      newUser.email = "YouShouldUpdateThis@soonaspossible.com"
       newUser.pfp = profile.photos[0].value //save our user to the database
       newUser.bio = 'Hi, Im from facebook :)'
       newUser.password = 'password'
