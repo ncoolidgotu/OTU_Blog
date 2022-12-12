@@ -11,9 +11,8 @@ let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
 let app = express();
+let facebookStrategy = require('passport-facebook').Strategy;
 
-let passportFacebook = require('passport-facebook');
-let facebookStrategy = passportFacebook.Strategy;
 /*Nate Coolidge - 100749708*/ 
 /*Jaime Gonzalez Sanz - 100839804*/ 
 /*Caleb Fontaine - 100832588 */
@@ -46,9 +45,31 @@ app.use(session({
 //implement a User AUthentication
 passport.use(User.createStrategy());
 
+
+// Configure the Facebook strategy for use by Passport.
+passport.use(new facebookStrategy({ //This is class constructor argument telling Passport to create a new Facebook Auth Strategy
+  clientID: '867795580935966', //The App ID generated when app was created on https://developers.facebook.com/
+  clientSecret:'4aa20c26d595af412a3f9bf8661223ee',//The App Secret generated when app was created on https://developers.facebook.com/
+  callbackURL: 'https://otublog.coolidge.ml/facebook/callback', 
+  profileFields: ['id', 'displayName', 'email'] // You have the option to specify the profile objects you want returned
+},
+function(accessToken, refreshToken, profile, done) {
+  console.log(profile)
+  return done(null,profile)
+}
+));
+
 // serialize and deserialize the user information
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+//passport.serializeUser(User.serializeUser());
+//passport.deserializeUser(User.deserializeUser());
+
+passport.serializeUser (function (user, done) {
+  done (null, user);
+});
+
+passport. deserializeUser (function (id, done) {
+  return done (null, id)
+});
 
 //initialize passport
 app.use(passport.initialize());
@@ -57,8 +78,6 @@ app.use(passport.session());
 
 //initialize flash
 app.use(flash());
-
-
 
 
 let indexRouter = require('../routes/index'); //router for index page
