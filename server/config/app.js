@@ -51,24 +51,71 @@ passport.use(new facebookStrategy({ //This is class constructor argument telling
   clientID: '867795580935966', //The App ID generated when app was created on https://developers.facebook.com/
   clientSecret:'4aa20c26d595af412a3f9bf8661223ee',//The App Secret generated when app was created on https://developers.facebook.com/
   callbackURL: 'https://otublog.coolidge.ml/facebook/callback', 
-  profileFields: ['id', 'displayName', 'email'] // You have the option to specify the profile objects you want returned
-},
+  profileFields: ['id', 'displayName', 'email', 'picture.type(large)'] // You have the option to specify the profile objects you want returned
+  },
+
 function(accessToken, refreshToken, profile, done) {
   console.log(profile)
-  return done(null,profile)
-}
+  process.nextTick(function() {
+    // find the user in the database based on their facebook id
+    User.findOne({ 'username' :profile.id }, function(err, user) {
+    //if there is an error, stop everything and return that
+    // ie an error connecting to the database
+    if (err)
+        return done(err);
+
+
+    // if the user is found, then log them in
+    if (user) {
+        console.log("user found")
+        console.log(user)
+    return done (null, user); // user found, return that user
+    } 
+    
+    else 
+    { 
+    // if there is no user found with that facebook id, create them
+    var newUser = new User();
+
+      //set all of the facebook information in our user model
+      newUser.username = profile.id; // set the users facebook id
+      //newUser.token = token; // we will save the token that facebook provi
+      newUser.displayName = profile.displayName
+      newUser.email = "happy@workpls.com"
+      newUser.pfp = profile.photos[0].value //save our user to the database
+      newUser.bio = 'Hi, Im from facebook :)'
+      newUser.password = 'password'
+      //newUser.created = "" 
+      //newUser.update = ""
+
+
+    newUser.save(function (err){
+        if (err)
+            throw err;
+        return done(null, newUser);
+
+                });
+              }
+          });
+      });
+    }
 ));
 
-// serialize and deserialize the user information
+
+//serialize and deserialize the user information
 //passport.serializeUser(User.serializeUser());
 //passport.deserializeUser(User.deserializeUser());
+//User.findById(id,function(err,user)){
+//
 
 passport.serializeUser (function (user, done) {
   done (null, user);
 });
 
 passport. deserializeUser (function (id, done) {
-  return done (null, id)
+    User.findById(id,function(err,user){
+      done(err,user);
+    });
 });
 
 //initialize passport

@@ -162,8 +162,6 @@ module.exports.processEditPage = (req,res,next) => {
     let id = req.params.id; //grab the selected post's id
     let editUser = User({
         "_id":id,
-        username: req.body.username,
-        password: req.body.password,
         email:req.body.email,
         "pfp":req.user ? req.user.pfp:'',
         bio:req.body.bio,
