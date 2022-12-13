@@ -89,7 +89,7 @@ module.exports.displayUpdatePage = (req, res, next)=>{ //make the function publi
                 title:'Update Post',
                 blog:postToEdit,
                 displayName: req.user ? req.user.displayName:''
-            }) //render the uppdate view with parameters filled in for the blog to edit
+            }) //render the update view with parameters filled in for the blog to edit
         }
     })
 }
@@ -129,7 +129,7 @@ module.exports.processPostUpdates = (req, res, next)=>{ //make the function publ
 
 module.exports.deletePost = (req, res, next)=> { //make the function public within a module
     let id = req.params.id;
-   Post.remove({_id:id}, (err) =>{
+    Post.remove({_id:id}, (err) =>{
         if(err)
         {
             console.log(err);
