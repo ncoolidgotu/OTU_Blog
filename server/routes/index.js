@@ -30,14 +30,17 @@ router.get('/home', indexController.displayHomepage); //retrieve index view from
 /* GET login page. */
 router.get('/login', indexController.displayLoginPage); //retrieve index view from indexController
 
+/* GET Facebook Authentication*/
 router.get('/auth/facebook', indexController.facebookAuth); //retrieve index view from indexController
 
 router.get('/facebook/callback', indexController.facebookCallback)
 
+/* GET Google Authentication*/
 router.get('/auth/google', indexController.googleAuth); //retrieve index view from indexController
 
 router.get('/google/callback', indexController.googleCallback)
 
+/* GET GitHub Authentication*/
 router.get('/auth/github', indexController.githubAuth); //retrieve index view from indexController
 
 router.get('/github/callback', indexController.githubCallback)

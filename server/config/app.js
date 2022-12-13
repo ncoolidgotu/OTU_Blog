@@ -67,6 +67,7 @@ passport.use(new JWTStrategy(jwtoptions,(jwt_payload,done)=>{
   });
 }));
 
+let verysecurepassword = crypto.randomBytes(20).toString('hex') //used to create a dummy password for third-party auth
 
 // Configure the Facebook strategy for use by Passport.
 passport.use(new facebookStrategy({ //Use the Facebook Auth stratagy
@@ -100,7 +101,7 @@ function(accessToken, refreshToken, profile, done) {
       newUser.email = "change@me.com" //in case user set their email to private
       newUser.pfp = profile.photos[0].value //save our user to the database
       newUser.bio = 'Hi, Im from facebook :)' //default value for bio
-      newUser.password = crypto.randomBytes(20).toString('hex'); //generate random text for local password
+      newUser.password = verysecurepassword; //generate random text for local password
     newUser.save(function (err){ //save the user to the database
         if (err)
             throw err;
@@ -151,7 +152,7 @@ function(accessToken, refreshToken, profile, done) {
       newUser.email = "dummy@email.com"
       newUser.pfp = profile.photos[0].value //save our user to the database
       newUser.bio = 'Hi, Im from github :)'
-      newUser.password = crypto.randomBytes(20).toString('hex');
+      newUser.password = verysecurepassword;
       //newUser.created = "" 
       //newUser.update = ""
 
@@ -195,7 +196,6 @@ function(request, accessToken, refreshToken, profile, done) {
     else 
     { 
     // if there is no user found with that Google id, create them
-    let verysecurepassword = crypto.randomBytes(20).toString('hex')
     var newUser = new User();
 
       //set all of the Google information in our user model

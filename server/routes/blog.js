@@ -16,6 +16,7 @@ let Post = require('../models/blog');
 
 let blogController = require('../controller/blog');
 
+//Get authentication for the login
 function requireAuth(req,res,next)
 {
 	if(!req.isAuthenticated())
