@@ -59,7 +59,7 @@ router.get('/delete/:id',requireAuth, blogController.deletePost);
 
 // Get to perform like post operations
 
-router.post('/like/:id', blogController.likePost);
+router.get('/like/:id', blogController.likePost);
 
 
 // Get operation to view profile

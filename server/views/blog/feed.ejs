@@ -7,7 +7,7 @@
 /*Haekang Song -100625189 */
 -->
 
-<main class="container">
+<main class="container" style="max-width: 768px; min-width: 768px">
 <br>
 <% for(let count=0; count < Postlist.length; count++) { %>
     <div data-aos="zoom-in" data-aos-easing="ease-in-out" class="aos-init aos-animate">
@@ -24,9 +24,11 @@
             </tr>
         </thead>
         <tbody class="table-light text-start">
+        <% if(Postlist[count].photo_content!='') { %> 
             <tr>
-                <td colspan="2 post_content"><%=Postlist[count].text_content%></td> 
+                <td class="post_text" colspan="2 post_content" style="max-width:768px; min-width: 768px"><%=Postlist[count].text_content%></td> 
             </tr>
+        <%}%>
         </tbody>
         <tbody class="table-light text-start">
             <tr>
@@ -35,12 +37,12 @@
         </tbody>
         <tbody>
             <td class="col-1">
-                <a href='/blog-feed/like'  class="btn btn-success">
+                <a href='/blog-feed/like/<%=Postlist[count]._id %>'  class="btn btn-success">
                 <i class="fa-regular fa-heart"></i> Like <%= Postlist[count].likes%></i></a>
             </td>
             <td class="col-1">
                 <a href='#'  class="btn btn-primary">
-                <i class="fa-regular fa-comment-dots"></i> Comment</i></a>
+                <i class="fa-regular fa-comment-dots"></i> Comment</i></a> <!--Not yet implemented-->
             </td>
         </tbody>
         <tbody>

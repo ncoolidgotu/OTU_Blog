@@ -4,7 +4,7 @@ let mongoose = require('mongoose'); //use mongoose library
 let passport = require('passport');
 let jwt = require('jsonwebtoken');
 let fs = require('fs');
-
+let DB = require('../config/db');
 let userModel = require('../models/user');
 let User = userModel.User;
 
@@ -14,6 +14,7 @@ let User = userModel.User;
 /*Saief Shams Murad - 100836639 */
 /*Haekang Song -100625189 */
 
+//Displays the Home Page
 module.exports.displayHomepage = (req, res, next)=>{ //make the function public within a module
     res.render('home',{
         title: 'Homepage',
@@ -21,6 +22,7 @@ module.exports.displayHomepage = (req, res, next)=>{ //make the function public 
     })
 }
 
+//Displays the Login Page
 module.exports.displayLoginPage = (req, res,next) => {
     if (!req.user)
     {
@@ -36,6 +38,8 @@ module.exports.displayLoginPage = (req, res,next) => {
         return res.redirect('/')
     }
 }
+
+//Processing the Login Page with the registered information
 module.exports.processLoginPage = (req, res, next) => {
     passport.authenticate('local',(err,user, info) =>
     {
@@ -48,6 +52,7 @@ module.exports.processLoginPage = (req, res, next) => {
         if(!user)
         {
             req.flash('loginMessage','AuthenticationError');
+            
             return res.redirect('/login');
         }
         req.login(user,(err) => {
@@ -68,16 +73,18 @@ module.exports.processLoginPage = (req, res, next) => {
             });
 
             // TODO - Getting Ready to convert to API
-            res.json({success: true, msg: 'User Logged in Successfully!', user: {
+            console.log({success: true, msg: 'User Logged in Successfully!', user: {
                 id: user._id,
                 displayName: user.displayName,
                 username: user.username,
                 email: user.email
             }, token: authToken});
+            return res.redirect('/blog-feed');
         });
-    })(req,res,next)
+    })(req,res,next);
 }
 
+//Facebook Authentication
 module.exports.facebookCallback = passport.authenticate('facebook', {
     successRedirect:'/blog-feed',
     failedRedirect:'/auth/login',
@@ -87,6 +94,7 @@ module.exports.facebookAuth = passport.authenticate('facebook', {
     scope:'email'
 })
 
+//Google Authentication
 module.exports.googleCallback = passport.authenticate('google', {
     successRedirect:'/blog-feed',
     failedRedirect:'/auth/login',
@@ -96,7 +104,7 @@ module.exports.googleAuth = passport.authenticate('google', {
     scope:['email', 'profile']
 })
 
-//Github Auth
+//Github Authentication
 module.exports.githubCallback = passport.authenticate('github', {
     successRedirect:'/blog-feed',
     failedRedirect:'/auth/login',
@@ -106,6 +114,7 @@ module.exports.githubAuth = passport.authenticate('github', {
     scope: "profile"
 })
 
+//Displays the Register Page
 module.exports.displayRegisterPage = (req,res,next) =>{
     //check if the user is not already logged in
     if(!req.user)
@@ -122,6 +131,8 @@ module.exports.displayRegisterPage = (req,res,next) =>{
         return res.redirect('/')
     }
 }
+
+//Processing the Register Page with the registered information
 module.exports.processRegisterPage = (req,res,next) => {
     let filename = Date.now() + req.file.filename
     let photoPath = '/Assets/images/userUploads/'+filename
@@ -167,6 +178,7 @@ module.exports.processRegisterPage = (req,res,next) => {
     })
 }
 
+//Logs the user out
 module.exports.performLogout = (req,res,next)=>
 {
     req.logout(function(err){
@@ -177,6 +189,7 @@ module.exports.performLogout = (req,res,next)=>
     res.redirect('/');
 }
 
+//Displays the Edit Page
 module.exports.displayEditPage = (req, res, next)=>{ //make the function public within a module
     let id = req.params.id;
     User.findById(id,(err,editUser)=>{
@@ -196,6 +209,7 @@ module.exports.displayEditPage = (req, res, next)=>{ //make the function public 
     })
 }
 
+//Processing the Edit Page with the registered information
 module.exports.processEditPage = (req,res,next) => {
     let id = req.params.id; //grab the selected post's id
     let editUser = User({
@@ -219,6 +233,7 @@ module.exports.processEditPage = (req,res,next) => {
     })
 }
 
+//Displays the Edit Profile Page
 module.exports.displayEditPfP = (req, res, next)=>{ //make the function public within a module
     let id = req.params.id;
     User.findById(id,(err,editUser)=>{
@@ -238,6 +253,7 @@ module.exports.displayEditPfP = (req, res, next)=>{ //make the function public w
     })
 }
 
+//Processing the Edit Page with the registered information
 module.exports.processEditPfP = (req,res,next) => {
     let id = req.params.id; //grab the selected post's id
     let filename = Date.now() + req.file.filename

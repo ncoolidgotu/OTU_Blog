@@ -16,7 +16,7 @@ let postsModel = mongoose.Schema({
     photo_content: String,
     postDate: Date,
     likes: Number,
-    comments: String,
+    comments: Array, //did not have time to implement
 },
 {
     collection: 'posts' //access the blog posts collection

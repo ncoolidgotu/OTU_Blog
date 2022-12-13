@@ -22,7 +22,6 @@ footer
     float: left;
 }
 
-
 nav
 {
     font-family: 'Lexend', sans-serif;
@@ -90,7 +89,7 @@ nav
     margin-top: 40px;
   }
 
-/*set the button color and size*/
+/*Home button - SAM
 .home_btn {
     font-size: 22px;
     padding: 15px 2px;
@@ -101,7 +100,7 @@ nav
     text-transform: uppercase;
     letter-spacing: 4px;
     font-weight: bold;
-    position: relative; /*put fake btn*/
+    position: relative; 
     transition: all 0.25s;
     overflow: hidden;
     text-decoration-line: none;
@@ -111,28 +110,29 @@ nav
 .btn_home
 {
     overflow: hidden;
-    max-width: 312px ;
+    max-width: 650px ;
     margin-left: auto;
     padding: 10px 0;
 }
 
-/*does not show outline when mouse click  */
+/*does not show outline when mouse click  
 .home_btn:focus {
     outline: none;
 }
 
-/*make fake button to make it more cool*/
+/*make fake button to make it more cool
 .home_btn::before {
     content: "";
-    position: absolute; /*can change the size*/
+    position: absolute; /*can change the size
     height: 100%;
     width: 100%;
     background-color: orangered;
     top: 0;
     left: -100%;
     transition: all 0.25s;
-    z-index: -1; /*To show the text*/
+    z-index: -1; /*To show the text
     visibility: hidden;
+    border-radius: 30px;
 }
 
 .home_btn:hover::before {
@@ -143,9 +143,58 @@ nav
 .home_btn:hover {
     color: white;
 }
+*/
+.home_btn {
+    position: relative;
+    background-color: orangered;
+    border: 2px;
+    border-radius: 25px;
+    font-size: 24px;
+    color: white;
+    padding: 10px;
+    width: 310px;
+    text-align: center;
+    -webkit-transition-duration: 0.6s; /* Safari */
+    transition-duration: 0.3s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+.home_btn:after {
+    content: "";
+    background: rgb(2, 0, 38);
+    display: block;
+    position: absolute;
+    padding-top: 200%;
+    padding-left: 250%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.6s
+}
+  
+.home_btn:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+.btn_home {
+    justify-content: center;
+}
 /*this is for home page*/
 
-
+.post_image
+{
+    height: 600px;
+    width: auto;
+    max-width: 768px;
+    object-fit: contain;
+    display: inline-block;
+}
 
 .clear
 {
@@ -181,8 +230,19 @@ nav
 .post_title
 {
     font-size: 28px;
-    font-weight: 500;
+    font-weight: 600;
     font-family: 'Krub', sans-serif;
+}
+.text-start
+{
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Krub', sans-serif;
+    word-wrap: break-word; 
+}
+tbody
+{
+    max-width: 120ch;
 }
 .profile_bio
 {
