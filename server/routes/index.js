@@ -38,6 +38,10 @@ router.get('/auth/google', indexController.googleAuth); //retrieve index view fr
 
 router.get('/google/callback', indexController.googleCallback)
 
+router.get('/auth/github', indexController.githubAuth); //retrieve index view from indexController
+
+router.get('/github/callback', indexController.githubCallback)
+
 /* POST login page. */
 router.post('/login', indexController.processLoginPage); //retrieve index view from indexController
 

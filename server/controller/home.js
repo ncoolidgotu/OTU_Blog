@@ -2,6 +2,7 @@ let express = require('express'); //use express library
 let router = express.Router(); //create router
 let mongoose = require('mongoose'); //use mongoose library
 let passport = require('passport');
+let jwt = require('jsonwebtoken');
 let fs = require('fs');
 
 let userModel = require('../models/user');
@@ -49,14 +50,32 @@ module.exports.processLoginPage = (req, res, next) => {
             req.flash('loginMessage','AuthenticationError');
             return res.redirect('/login');
         }
-        req.login(user, (err) => {
+        req.login(user,(err) => {
             if(err)
             {
                 return next(err)
             }
-            return res.redirect('blog-feed');            
-        })
-    })(req, res, next)
+            const payload = 
+            {
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }
+
+            const authToken = jwt.sign(payload, DB.secret, {
+                expiresIn: 604800 // 1 week
+            });
+
+            // TODO - Getting Ready to convert to API
+            res.json({success: true, msg: 'User Logged in Successfully!', user: {
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }, token: authToken});
+        });
+    })(req,res,next)
 }
 
 module.exports.facebookCallback = passport.authenticate('facebook', {
@@ -75,6 +94,16 @@ module.exports.googleCallback = passport.authenticate('google', {
 
 module.exports.googleAuth = passport.authenticate('google', {
     scope:['email', 'profile']
+})
+
+//Github Auth
+module.exports.githubCallback = passport.authenticate('github', {
+    successRedirect:'/blog-feed',
+    failedRedirect:'/auth/login',
+})
+
+module.exports.githubAuth = passport.authenticate('github', {
+    scope: "profile"
 })
 
 module.exports.displayRegisterPage = (req,res,next) =>{

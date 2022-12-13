@@ -7,6 +7,7 @@ let bodyParser = require('body-parser');
 let fs = require('fs');
 let multer = require('multer');
 let path = require('path');
+let jwt = require('jsonwebtoken');
 
 /*Nate Coolidge - 100749708*/ 
 /*Jaime Gonzalez Sanz - 100839804*/ 

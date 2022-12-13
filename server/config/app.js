@@ -8,10 +8,13 @@ let multer = require('multer');
 let session = require('express-session');
 let passport = require('passport');
 let passportLocal = require('passport-local');
+let passportJWT = require('passport-jwt');
+let JWTStrategy = passportJWT.Strategy;
+let ExtractJWT = passportJWT.ExtractJwt;
 let localStrategy = passportLocal.Strategy;
 let facebookStrategy = require('passport-facebook').Strategy;
 let googleStrategy = require('passport-google-oauth2').Strategy;
-let microsoftStrategy = require('passport-microsoft').Strategy;
+let githubStrategy = require('passport-github2').Strategy;
 let flash = require('connect-flash');
 let crypto = require("crypto");
 let app = express();
@@ -48,6 +51,18 @@ app.use(session({
 
 //implement a User AUthentication
 passport.use(User.createStrategy());
+
+
+/*let jwtoptions = {};
+jwtoptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
+jwtoptions.secretOrKey = DB.secret;
+
+passport.use(new JWTStrategy(jwtoptions,(jwt_payload,done)=>{
+  User.findById(jwt_payload.id, (err, user) => {
+    if (err) return done(err, false);
+    return done(null, user);
+  });
+}));*/
 
 
 // Configure the Facebook strategy for use by Passport.
@@ -106,11 +121,11 @@ function(accessToken, refreshToken, profile, done) {
 ));
 
 // Configure the Facebook strategy for use by Passport.
-passport.use(new microsoftStrategy({ //This is class constructor argument telling Passport to create a new Facebook Auth Strategy
-  clientID: '867795580935966', //The App ID generated when app was created on https://developers.facebook.com/
-  clientSecret:'4aa20c26d595af412a3f9bf8661223ee',//The App Secret generated when app was created on https://developers.facebook.com/
-  callbackURL: 'https://otublog.coolidge.ml/facebook/callback', 
-  profileFields: ['id', 'displayName', 'email', 'picture.type(large)'] // You have the option to specify the profile objects you want returned
+passport.use(new githubStrategy({ //This is class constructor argument telling Passport to create a new Facebook Auth Strategy
+  clientID: '2f99e48e3549fd3a6a7d', //The App ID generated when app was created on https://developers.facebook.com/
+  clientSecret:'1f4ceff622834996e33b63f3f3a56df1fd0a224b',//The App Secret generated when app was created on https://developers.facebook.com/
+  callbackURL: 'https://otublog.coolidge.ml/github/callback', 
+
   },
 
 function(accessToken, refreshToken, profile, done) {
@@ -139,10 +154,10 @@ function(accessToken, refreshToken, profile, done) {
       //set all of the facebook information in our user model
       newUser.username = profile.id; // set the users facebook id
       //newUser.token = token; // we will save the token that facebook provi
-      newUser.displayName = profile.displayName
-      newUser.email = profile.emails[0].value
+      newUser.displayName = profile.username
+      newUser.email = "dummy@email.com"
       newUser.pfp = profile.photos[0].value //save our user to the database
-      newUser.bio = 'Hi, Im from facebook :)'
+      newUser.bio = 'Hi, Im from github :)'
       newUser.password = crypto.randomBytes(20).toString('hex');
       //newUser.created = "" 
       //newUser.update = ""
