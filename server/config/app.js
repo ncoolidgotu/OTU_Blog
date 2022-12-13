@@ -9,9 +9,13 @@ let session = require('express-session');
 let passport = require('passport');
 let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
-let flash = require('connect-flash');
-let app = express();
 let facebookStrategy = require('passport-facebook').Strategy;
+let googleStrategy = require('passport-google-oauth2').Strategy;
+let microsoftStrategy = require('passport-microsoft').Strategy;
+let flash = require('connect-flash');
+let crypto = require("crypto");
+let app = express();
+
 
 /*Nate Coolidge - 100749708*/ 
 /*Jaime Gonzalez Sanz - 100839804*/ 
@@ -56,7 +60,7 @@ passport.use(new facebookStrategy({ //This is class constructor argument telling
 
 function(accessToken, refreshToken, profile, done) {
   console.log(profile)
-  process.nextTick(function() {
+  process.nextTick(function() { //keep event in queue
     // find the user in the database based on their facebook id
     User.findOne({ 'username' :profile.id }, function(err, user) {
     //if there is an error, stop everything and return that
@@ -81,10 +85,10 @@ function(accessToken, refreshToken, profile, done) {
       newUser.username = profile.id; // set the users facebook id
       //newUser.token = token; // we will save the token that facebook provi
       newUser.displayName = profile.displayName
-      newUser.email = "YouShouldUpdateThis@soonaspossible.com"
+      newUser.email = profile.emails[0].value
       newUser.pfp = profile.photos[0].value //save our user to the database
       newUser.bio = 'Hi, Im from facebook :)'
-      newUser.password = 'password'
+      newUser.password = crypto.randomBytes(20).toString('hex');
       //newUser.created = "" 
       //newUser.update = ""
 
@@ -100,6 +104,113 @@ function(accessToken, refreshToken, profile, done) {
       });
     }
 ));
+
+// Configure the Facebook strategy for use by Passport.
+passport.use(new microsoftStrategy({ //This is class constructor argument telling Passport to create a new Facebook Auth Strategy
+  clientID: '867795580935966', //The App ID generated when app was created on https://developers.facebook.com/
+  clientSecret:'4aa20c26d595af412a3f9bf8661223ee',//The App Secret generated when app was created on https://developers.facebook.com/
+  callbackURL: 'https://otublog.coolidge.ml/facebook/callback', 
+  profileFields: ['id', 'displayName', 'email', 'picture.type(large)'] // You have the option to specify the profile objects you want returned
+  },
+
+function(accessToken, refreshToken, profile, done) {
+  console.log(profile)
+  process.nextTick(function() { //keep event in queue
+    // find the user in the database based on their facebook id
+    User.findOne({ 'username' :profile.id }, function(err, user) {
+    //if there is an error, stop everything and return that
+    // ie an error connecting to the database
+    if (err)
+        return done(err);
+
+
+    // if the user is found, then log them in
+    if (user) {
+        console.log("user found")
+        console.log(user)
+    return done (null, user); // user found, return that user
+    } 
+    
+    else 
+    { 
+    // if there is no user found with that facebook id, create them
+    var newUser = new User();
+
+      //set all of the facebook information in our user model
+      newUser.username = profile.id; // set the users facebook id
+      //newUser.token = token; // we will save the token that facebook provi
+      newUser.displayName = profile.displayName
+      newUser.email = profile.emails[0].value
+      newUser.pfp = profile.photos[0].value //save our user to the database
+      newUser.bio = 'Hi, Im from facebook :)'
+      newUser.password = crypto.randomBytes(20).toString('hex');
+      //newUser.created = "" 
+      //newUser.update = ""
+
+
+    newUser.save(function (err){
+        if (err)
+            throw err;
+        return done(null, newUser);
+
+                });
+              }
+          });
+      });
+    }
+));
+
+
+passport.use(new googleStrategy({ //This is class constructor argument telling Passport to create a new Facebook Auth Strategy
+  clientID: '556882229882-m6n55f1alg0umio5fsl8aeh9374gdh6g.apps.googleusercontent.com', //The App ID generated when app was created on google developer console
+  clientSecret:'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',//The App Secret generated when app was created on google developer console
+  callbackURL: 'https://otublog.coolidge.ml/google/callback',
+
+  },
+
+function(request, accessToken, refreshToken, profile, done) {
+  console.log(profile)
+  process.nextTick(function() { //keep event in queue
+    // find the user in the database based on their facebook id
+    User.findOne({ 'username' :profile.id }, function(err, user) {
+    //if there is an error, stop everything and return that
+    // ie an error connecting to the database
+    if (err)
+        return done(err);
+    // if the user is found, then log them in
+    if (user) {
+        console.log("user found")
+        console.log(user)
+    return done (null, user); // user found, return that user
+    } 
+    
+    else 
+    { 
+    // if there is no user found with that facebook id, create them
+    let verysecurepassword = crypto.randomBytes(20).toString('hex')
+    var newUser = new User();
+
+      //set all of the facebook information in our user model
+      newUser.username = profile.id; // set the users facebook id
+      //newUser.token = token; // we will save the token that facebook provi
+      newUser.displayName = profile.displayName
+      newUser.email = profile.email
+      newUser.pfp = profile.photos[0].value //save our user to the database
+      newUser.bio = 'Hi, Im from google :)'
+      newUser.password = verysecurepassword
+      //newUser.created = "" 
+      //newUser.update = ""
+
+
+    newUser.save(function (err){
+        if (err)
+            throw err;
+            return done(null, newUser);
+                });
+              }
+          });
+        });
+}));
 
 
 //serialize and deserialize the user information
