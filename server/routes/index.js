@@ -34,6 +34,10 @@ router.get('/auth/facebook', indexController.facebookAuth); //retrieve index vie
 
 router.get('/facebook/callback', indexController.facebookCallback)
 
+router.get('/auth/google', indexController.googleAuth); //retrieve index view from indexController
+
+router.get('/google/callback', indexController.googleCallback)
+
 /* POST login page. */
 router.post('/login', indexController.processLoginPage); //retrieve index view from indexController
 

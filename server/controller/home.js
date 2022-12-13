@@ -68,6 +68,15 @@ module.exports.facebookAuth = passport.authenticate('facebook', {
     scope:'email'
 })
 
+module.exports.googleCallback = passport.authenticate('google', {
+    successRedirect:'/blog-feed',
+    failedRedirect:'/auth/login',
+})
+
+module.exports.googleAuth = passport.authenticate('google', {
+    scope:['email', 'profile']
+})
+
 module.exports.displayRegisterPage = (req,res,next) =>{
     //check if the user is not already logged in
     if(!req.user)
