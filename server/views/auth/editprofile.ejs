@@ -8,7 +8,7 @@
         <h1>Edit your profile</h1>
         <form method="post" autocomplete="off">
             <fieldset class="form-group">
-                <label for="email"></label>
+                <label for="email">Enter email:</label>
                 <input type="email" class="form-control"
                 name="email"
                 value = "<%= user.email%>"
@@ -16,7 +16,7 @@
                 id ="email" required>
             </fieldset>
             <fieldset class="form-group">
-                <label for="displayName"></label>
+                <label for="displayName">Enter display name:</label>
                 <input type="text" class="form-control"
                 name="displayName"
                 value = "<%= user.displayName%>"
@@ -24,7 +24,7 @@
                 id ="displayName" required>
             </fieldset>
             <fieldset class="form-group">
-                <label for="profile_bio"></label>
+                <label for="profile_bio">Enter bio:</label>
                 <input type="text" class="form-control"
                 name="bio"
                 value = "<%= user.bio%>"

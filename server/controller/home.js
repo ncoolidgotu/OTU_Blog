@@ -213,11 +213,13 @@ module.exports.displayEditPage = (req, res, next)=>{ //make the function public 
 module.exports.processEditPage = (req,res,next) => {
     let id = req.params.id; //grab the selected post's id
     let editUser = User({
+        "username": req.user ? req.user.username:'',
+        "password": req.user ? req.user.password:'',
         "_id":id,
-        email:req.body.email,
+        "email":req.body.email,
         "pfp":req.user ? req.user.pfp:'',
-        bio:req.body.bio,
-        displayName:req.body.displayName
+        "bio":req.body.bio,
+        "displayName":req.body.displayName
     })
     User.updateOne({_id:id}, editUser,(err) => { //post the changes
         if(err)
